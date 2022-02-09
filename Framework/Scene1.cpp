@@ -6,6 +6,8 @@
 #include "Debug.h"
 
 Scene1::Scene1(SDL_Window* sdlWindow_){
+
+	//Render scene 1 window
 	Debug::Info("Created Scene1: ", __FILE__, __LINE__);
 	window = sdlWindow_;
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
@@ -13,6 +15,7 @@ Scene1::Scene1(SDL_Window* sdlWindow_){
 		printf("%s\n", SDL_GetError());
 	}
 
+	//Create player object with initial pos vel and accel vec
 	player = new Player(Vec3(5.0f, 5.0f, 0.0f), Vec3(1.0f, 0.0f, 0.0f), Vec3(0.0f, -9.8f, 0.0f), 5.0f);
 	Timer::SetSingleEvent(5000, (void*)"Start");
 }
@@ -29,7 +32,7 @@ bool Scene1::OnCreate() {
 	Matrix4 ortho = MMath::orthographic(0.0f, 30.0f, 0.0f, 15.0f, 0.0f, 1.0f);
 	projectionMatrix = ndc * ortho;
 
-	//Turn on SDL Imaging subsystem
+	//Turn on SDL Imaging subsystem and attach images to objects
 	IMG_Init(IMG_INIT_PNG);
 	SDL_Surface *playerImage = IMG_Load("textures/playerSprite.png");
 	SDL_Texture* playerTexture = SDL_CreateTextureFromSurface(renderer, playerImage);
@@ -49,11 +52,15 @@ void Scene1::OnDestroy() {}
 void Scene1::Update(const float deltaTime) {
 	player->Update(deltaTime);
 
+
+			//Gails code optional way of player and game manager communication
 	//If player.pos collides with winnning game object end the scene
 	// if (....) {game-aFunctionToSetABooleanToSwitchScene();} //will change a boolean in game manager
 }
 
 void Scene1::HandleEvents(const SDL_Event& sdlEvent) {
+	//Handle player movement events
+	//Press D to add a force. **Should really be hold D to add a velocity maybe -> not working as expected
 	if (sdlEvent.type == SDL_EventType::SDL_KEYDOWN) {
 		if (sdlEvent.key.keysym.scancode == SDL_SCANCODE_D) {
 			player->ApplyForce(Vec3(100.0f, 0.0f, 0.0f));
@@ -67,13 +74,14 @@ void Scene1::HandleEvents(const SDL_Event& sdlEvent) {
 	}
 }
 void Scene1::Render() {
-	SDL_SetRenderDrawColor(renderer, 112, 128, 144, 0); // drawing black
+	SDL_SetRenderDrawColor(renderer, 112, 128, 144, 0); // drawing grey colour for background
 	SDL_RenderClear(renderer);
 
 	SDL_Rect square;
 	Vec3 screenCoords;
 	int w, h;
 
+	//Draw the player in its given position and modify its size
 	screenCoords = projectionMatrix * player->getPos();
 	SDL_QueryTexture(player->getTexture(), nullptr, nullptr, &w, &h);
 	square.x = static_cast<int>(screenCoords.x); 
