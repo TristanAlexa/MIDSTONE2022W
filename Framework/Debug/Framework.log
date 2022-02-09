@@ -1,0 +1,6 @@
+﻿  GameManager.cpp
+  Player.cpp
+D:\HUMBER - YEAR 1\WINTER 2021\3. GAME 101 - PROGRAMMING\SDL_Framework21.0.0 - PLAYERCLASS\Framework\Player.cpp(40,55): warning C4552: '+': result of expression not used
+  Scene1.cpp
+  Generating Code...
+  Framework.vcxproj -> D:\HUMBER - YEAR 1\WINTER 2021\3. GAME 101 - PROGRAMMING\SDL_Framework21.0.0 - PLAYERCLASS\Debug\Framework.exe
