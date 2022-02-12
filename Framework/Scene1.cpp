@@ -5,6 +5,10 @@
 #include "Timer.h"
 #include "Debug.h"
 
+
+//Current problems: //After pressing A key and moving left, player sprite resets to face right.
+					//Player can jump an infinite amount of times (add isGrounded boolean)
+					//Need correct floor and roof collisions so player does not bounce. (TRELLO CARD: FRAME LEVEL PATH WITH COLLISION BOXES)
 Scene1::Scene1(SDL_Window* sdlWindow_){
 
 	//Render scene 1 window
@@ -16,7 +20,8 @@ Scene1::Scene1(SDL_Window* sdlWindow_){
 	}
 
 	//Create player object with initial pos vel and accel vec
-	player = new Player(Vec3(5.0f, 5.0f, 0.0f), Vec3(1.0f, 0.0f, 0.0f), Vec3(0.0f, -9.8f, 0.0f), 5.0f);
+	player = new Player();
+	player->setPosition(Vec3(1.0f, 5.0f, 0.0f));
 	Timer::SetSingleEvent(5000, (void*)"Start");
 }
 
@@ -51,25 +56,52 @@ void Scene1::OnDestroy() {}
 
 void Scene1::Update(const float deltaTime) {
 	player->Update(deltaTime);
-
-
-			//Gails code optional way of player and game manager communication
+	
+	//Gails code optional way of player and game manager communication can do if we want
 	//If player.pos collides with winnning game object end the scene
 	// if (....) {game-aFunctionToSetABooleanToSwitchScene();} //will change a boolean in game manager
 }
 
 void Scene1::HandleEvents(const SDL_Event& sdlEvent) {
 	//Handle player movement events
-	//Press D to add a force. **Should really be hold D to add a velocity maybe -> not working as expected
 	if (sdlEvent.type == SDL_EventType::SDL_KEYDOWN) {
 		if (sdlEvent.key.keysym.scancode == SDL_SCANCODE_D) {
-			player->ApplyForce(Vec3(100.0f, 0.0f, 0.0f));
+			player->ApplyForceX(5.0f);
 			player->isMoving(true);
 		}
 	}
 	else if (sdlEvent.type == SDL_EventType::SDL_KEYUP) {
 		if (sdlEvent.key.keysym.scancode == SDL_SCANCODE_D) {
-			player->ApplyForce(Vec3(0.0f, 0.0f, 0.0f));
+			player->UnsetForceX();
+			player->setVelocity(Vec3(0.0f, 0.0f, 0.0f));
+			player->isMoving(false);
+		}
+	}
+
+	if (sdlEvent.type == SDL_EventType::SDL_KEYDOWN) {
+		if (sdlEvent.key.keysym.scancode == SDL_SCANCODE_A) {
+			player->ApplyForceX(-5.0f);
+			player->isMoving(true);
+		}
+	}
+	else if (sdlEvent.type == SDL_EventType::SDL_KEYUP) {
+		if (sdlEvent.key.keysym.scancode == SDL_SCANCODE_A) {
+			player->UnsetForceX();
+			player->isMoving(false);
+		}
+	}
+
+	if (sdlEvent.type == SDL_EventType::SDL_KEYDOWN) {
+		if (sdlEvent.key.keysym.scancode == SDL_SCANCODE_SPACE) {
+			Debug::Info("Spacebar is pressed!", __FILE__, __LINE__);
+			player->ApplyForceY(100.0f);
+			player->isMoving(true);
+		}
+	}
+
+	else if (sdlEvent.type == SDL_EventType::SDL_KEYUP) {
+		if (sdlEvent.key.keysym.scancode == SDL_SCANCODE_SPACE) {
+			player->UnsetForceY();
 		}
 	}
 }

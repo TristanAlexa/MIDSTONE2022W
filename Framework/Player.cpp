@@ -14,8 +14,11 @@ Player::Player()
 	accel.y = 0.0f;
 	accel.z = 0.0f;
 
-	mass = 1.0f;
+	mass = UNI_MASS;
+	gravity = -GRAVITY;
+
 	isMoving(false);
+	
 }
 
 Player::Player(Vec3 pos_, Vec3 vel_, Vec3 accel_, float mass_)
@@ -24,7 +27,6 @@ Player::Player(Vec3 pos_, Vec3 vel_, Vec3 accel_, float mass_)
 	vel = vel_;
 	accel = accel_;
 	mass = mass_;
-
 }
 
 Player::~Player()
@@ -37,11 +39,16 @@ void Player::Update(float deltaTime)
 	if (is_moving == false) {
 		return;
 	}
-	pos += (vel * deltaTime); + (0.5 * accel * deltaTime * deltaTime);
-	vel += (accel * deltaTime);
+
+	//Update position due to acceleration forces
+	accel.x = force.x / mass;
+	accel.y = gravity + force.y / mass;
+	vel += accel * deltaTime;
+	pos += vel * deltaTime;
+	
 
 	//wall and floor collisions to test player movement
-	if (pos.y < 0.0f) {
+	if (pos.y < 3.5f) {
 		vel.y = -vel.y;
 	}
 	if (pos.y > 15.0f) {
@@ -53,9 +60,4 @@ void Player::Update(float deltaTime)
 	if (pos.x > 27.0f) {
 		vel.x = -vel.x;
 	}
-}
-
-void Player::ApplyForce(Vec3 force)
-{
-	accel = force / mass;
 }
