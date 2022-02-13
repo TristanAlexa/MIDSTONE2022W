@@ -36,20 +36,16 @@ Player::~Player()
 void Player::Update(float deltaTime)
 {
 
-	if (is_moving == false) {
-		return;
-	}
 
 	//Update position due to acceleration forces
 	accel.x = force.x / mass;
 	accel.y = gravity + force.y / mass;
-	vel += accel * deltaTime;
-	pos += vel * deltaTime;
-	
+	vel.x += accel.x * deltaTime;
+	vel.y += accel.y * deltaTime;
 
 	//wall and floor collisions to test player movement
-	if (pos.y < 3.5f) {
-		vel.y = -vel.y;
+	if (pos.y < 5.0f) {
+		vel.y = 0.0f;
 	}
 	if (pos.y > 15.0f) {
 		vel.y = -vel.y;
@@ -60,4 +56,7 @@ void Player::Update(float deltaTime)
 	if (pos.x > 27.0f) {
 		vel.x = -vel.x;
 	}
+
+	pos += vel * deltaTime;
+
 }

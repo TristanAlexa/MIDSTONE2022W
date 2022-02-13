@@ -44,6 +44,8 @@ public:
 	Vec3 getPos() { return pos; }
 	Vec3 getVelocity() { return vel; }
 	void setVelocity(Vec3 vel_) { vel = vel_; }  //overloaded operator
+	void setVelocityX(float Vx) { vel.x = Vx; }
+	void setVelocityY(float Vy) { vel.y = Vy; }
 	void setPosition(Vec3 pos_) { pos = pos_; }
 	Vec3 getAcceleration() { return accel; }
 	float getRadius() { return radius; }
