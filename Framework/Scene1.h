@@ -4,6 +4,7 @@
 #include "MMath.h"
 #include "Scene.h"
 #include <SDL.h>
+#include <Vector>
 #include "Body.h"
 #include "Player.h"
 
@@ -14,7 +15,7 @@ private:
 	SDL_Renderer *renderer;
 	Matrix4 projectionMatrix;
 	//Body *damagedealers
-
+	
 	Player* player;
 	
 public:

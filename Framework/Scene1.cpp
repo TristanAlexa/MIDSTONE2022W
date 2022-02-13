@@ -66,35 +66,35 @@ void Scene1::HandleEvents(const SDL_Event& sdlEvent) {
 	//Handle player movement events
 	if (sdlEvent.type == SDL_EventType::SDL_KEYDOWN) {
 		if (sdlEvent.key.keysym.scancode == SDL_SCANCODE_D) {
-			player->ApplyForceX(5.0f);
+			player->ApplyForce(Vec3(5.0f, -9.8f, 0.0f));
 			player->isMoving(true);
 		}
 	}
 	else if (sdlEvent.type == SDL_EventType::SDL_KEYUP) {
 		if (sdlEvent.key.keysym.scancode == SDL_SCANCODE_D) {
-			player->UnsetForceX();
-			player->setVelocity(Vec3(0.0f, 0.0f, 0.0f));
-			player->isMoving(false);
+			//player->UnsetForceX();
+			player->ApplyForce(Vec3(0.0f, -9.8f, 0.0f));
+			player->isMoving(true);
 		}
 	}
 
 	if (sdlEvent.type == SDL_EventType::SDL_KEYDOWN) {
 		if (sdlEvent.key.keysym.scancode == SDL_SCANCODE_A) {
-			player->ApplyForceX(-5.0f);
+			player->ApplyForce(Vec3(-5.0f, -9.8f, 0.0f));
 			player->isMoving(true);
 		}
 	}
 	else if (sdlEvent.type == SDL_EventType::SDL_KEYUP) {
 		if (sdlEvent.key.keysym.scancode == SDL_SCANCODE_A) {
 			player->UnsetForceX();
-			player->isMoving(false);
+			player->isMoving(true);
 		}
 	}
 
 	if (sdlEvent.type == SDL_EventType::SDL_KEYDOWN) {
 		if (sdlEvent.key.keysym.scancode == SDL_SCANCODE_SPACE) {
 			Debug::Info("Spacebar is pressed!", __FILE__, __LINE__);
-			player->ApplyForceY(100.0f);
+			player->ApplyForce(Vec3(0.0f, 5.0f, 0.0f));
 			player->isMoving(true);
 		}
 	}
@@ -105,6 +105,7 @@ void Scene1::HandleEvents(const SDL_Event& sdlEvent) {
 		}
 	}
 }
+
 void Scene1::Render() {
 	SDL_SetRenderDrawColor(renderer, 112, 128, 144, 0); // drawing grey colour for background
 	SDL_RenderClear(renderer);
@@ -129,4 +130,5 @@ void Scene1::Render() {
 		SDL_RenderCopyEx(renderer, player->getTexture(), nullptr, &square, 0.0, nullptr, SDL_FLIP_HORIZONTAL);
 	}
 	SDL_RenderPresent(renderer);
+
 }
