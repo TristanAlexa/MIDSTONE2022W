@@ -66,21 +66,21 @@ void Scene1::HandleEvents(const SDL_Event& sdlEvent) {
 	//Handle player movement events
 	if (sdlEvent.type == SDL_EventType::SDL_KEYDOWN) {
 		if (sdlEvent.key.keysym.scancode == SDL_SCANCODE_D) {
-			player->ApplyForce(Vec3(5.0f, -9.8f, 0.0f));
+			player->ApplyForce(Vec3(5.0f, 0.0f, 0.0f));
 			player->isMoving(true);
 		}
 	}
 	else if (sdlEvent.type == SDL_EventType::SDL_KEYUP) {
 		if (sdlEvent.key.keysym.scancode == SDL_SCANCODE_D) {
 			//player->UnsetForceX();
-			player->ApplyForce(Vec3(0.0f, -9.8f, 0.0f));
+			player->ApplyForce(Vec3(0.0f, 0.0f, 0.0f));
 			player->isMoving(true);
 		}
 	}
 
 	if (sdlEvent.type == SDL_EventType::SDL_KEYDOWN) {
 		if (sdlEvent.key.keysym.scancode == SDL_SCANCODE_A) {
-			player->ApplyForce(Vec3(-5.0f, -9.8f, 0.0f));
+			player->ApplyForce(Vec3(-5.0f, 0.0f, 0.0f));
 			player->isMoving(true);
 		}
 	}
@@ -94,7 +94,7 @@ void Scene1::HandleEvents(const SDL_Event& sdlEvent) {
 	if (sdlEvent.type == SDL_EventType::SDL_KEYDOWN) {
 		if (sdlEvent.key.keysym.scancode == SDL_SCANCODE_SPACE) {
 			Debug::Info("Spacebar is pressed!", __FILE__, __LINE__);
-			player->ApplyForce(Vec3(0.0f, 5.0f, 0.0f));
+			player->ApplyForce(Vec3(0.0f, 15.0f, 0.0f));
 			player->isMoving(true);
 		}
 	}
