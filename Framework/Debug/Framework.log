@@ -1,2 +1,3 @@
-﻿  Scene1.cpp
+﻿  Player.cpp
+C:\Users\ndliu\Documents\Humber Programming\MIDSTONE2022W\Framework\Player.cpp(66,9): warning C4552: '-': result of expression not used
   Framework.vcxproj -> C:\Users\ndliu\Documents\Humber Programming\MIDSTONE2022W\Debug\Framework.exe
