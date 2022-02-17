@@ -17,8 +17,8 @@ Player::Player()
 	mass = UNI_MASS;
 	gravity = -GRAVITY;
 
-	isMoving(false);
-	
+	is_moving = false;
+	is_grounded = false;
 }
 
 Player::Player(Vec3 pos_, Vec3 vel_, Vec3 accel_, float mass_)
@@ -31,6 +31,19 @@ Player::Player(Vec3 pos_, Vec3 vel_, Vec3 accel_, float mass_)
 
 Player::~Player()
 {
+}
+
+
+bool Player::isGrounded()
+{
+	if (pos.y <= 5.0f) {
+		is_grounded = true;
+		return true;
+	}
+	else {
+		is_grounded = false;
+		return false;
+	}
 }
 
 void Player::Update(float deltaTime)
@@ -48,6 +61,7 @@ void Player::Update(float deltaTime)
 	if (pos.y + (vel.y * deltaTime) < 5.0f)
 	{
 		pos.y = 5.0f;
+		
 	}
 	else if (pos.y + (vel.y * deltaTime) > 15.0f)
 	{
@@ -60,10 +74,12 @@ void Player::Update(float deltaTime)
 
 	if (pos.x + (vel.x * deltaTime) < 0.0f) {
 		pos.x = 0.0f;
+		
 	}
 	else if (pos.x + (vel.x * deltaTime) > 27.0f)
 	{
-		pos.x - 27.0f;
+		pos.x = 27.0f;
+		
 	}
 	else
 	{

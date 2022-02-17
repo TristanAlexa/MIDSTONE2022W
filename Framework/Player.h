@@ -14,10 +14,10 @@ private:
 	Vec3 vel;
 	Vec3 accel;
 	Vec3 force;
+	float gravity;
+	float mass;
 
 	float rotationZ;
-	float mass;
-	float gravity;
 	float radius;
 
 	SDL_Surface* image;
@@ -31,6 +31,8 @@ public:
 	~Player();
 
 	void isMoving(bool TorF) { is_moving = TorF; }
+	//void isGrounded(bool TorF) { is_grounded = TorF; }
+	bool isGrounded();
 	void Update(float deltaTime);
 
 	//Force

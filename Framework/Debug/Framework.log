@@ -1,3 +1,5 @@
-﻿  Player.cpp
-C:\Users\ndliu\Documents\Humber Programming\MIDSTONE2022W\Framework\Player.cpp(66,9): warning C4552: '-': result of expression not used
-  Framework.vcxproj -> C:\Users\ndliu\Documents\Humber Programming\MIDSTONE2022W\Debug\Framework.exe
+﻿  GameManager.cpp
+  Player.cpp
+  Scene1.cpp
+  Generating Code...
+  Framework.vcxproj -> C:\Users\trist\OneDrive\Desktop\MIDSTONE\SDL_Framework21.0.0 - PLAYERCLASS\Debug\Framework.exe
