@@ -14,10 +14,10 @@ private:
 	Vec3 vel;
 	Vec3 accel;
 	Vec3 force;
+	float gravity;
+	float mass;
 
 	float rotationZ;
-	float mass;
-	float gravity;
 	float radius;
 
 	SDL_Surface* image;
@@ -31,6 +31,8 @@ public:
 	~Player();
 
 	void isMoving(bool TorF) { is_moving = TorF; }
+	//void isGrounded(bool TorF) { is_grounded = TorF; }
+	bool isGrounded();
 	void Update(float deltaTime);
 
 	//Force
@@ -44,6 +46,8 @@ public:
 	Vec3 getPos() { return pos; }
 	Vec3 getVelocity() { return vel; }
 	void setVelocity(Vec3 vel_) { vel = vel_; }  //overloaded operator
+	void setVelocityX(float Vx) { vel.x = Vx; }
+	void setVelocityY(float Vy) { vel.y = Vy; }
 	void setPosition(Vec3 pos_) { pos = pos_; }
 	Vec3 getAcceleration() { return accel; }
 	float getRadius() { return radius; }

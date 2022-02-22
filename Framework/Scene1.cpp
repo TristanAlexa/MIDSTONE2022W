@@ -5,10 +5,6 @@
 #include "Timer.h"
 #include "Debug.h"
 
-
-//Current problems: //After pressing A key and moving left, player sprite resets to face right.
-					//Player can jump an infinite amount of times (add isGrounded boolean)
-					//Need correct floor and roof collisions so player does not bounce. (TRELLO CARD: FRAME LEVEL PATH WITH COLLISION BOXES)
 Scene1::Scene1(SDL_Window* sdlWindow_){
 
 	//Render scene 1 window
@@ -19,7 +15,7 @@ Scene1::Scene1(SDL_Window* sdlWindow_){
 		printf("%s\n", SDL_GetError());
 	}
 
-	//Create player object with initial pos vel and accel vec
+	//Create player object, set initial pos
 	player = new Player();
 	player->setPosition(Vec3(1.0f, 5.0f, 0.0f));
 	Timer::SetSingleEvent(5000, (void*)"Start");
@@ -66,36 +62,33 @@ void Scene1::HandleEvents(const SDL_Event& sdlEvent) {
 	//Handle player movement events
 	if (sdlEvent.type == SDL_EventType::SDL_KEYDOWN) {
 		if (sdlEvent.key.keysym.scancode == SDL_SCANCODE_D) {
-			player->ApplyForce(Vec3(5.0f, 0.0f, 0.0f));
-			player->isMoving(true);
+			player->setVelocityX(5.0f);
 		}
 	}
 	else if (sdlEvent.type == SDL_EventType::SDL_KEYUP) {
-		if (sdlEvent.key.keysym.scancode == SDL_SCANCODE_D) {
-			//player->UnsetForceX();
-			player->ApplyForce(Vec3(0.0f, 0.0f, 0.0f));
-			player->isMoving(true);
+		if (sdlEvent.key.keysym.scancode == SDL_SCANCODE_D && player->isGrounded()) {
+			//only set vel to 0 if player is grounded
+			player->setVelocityX(0.0f);
 		}
 	}
 
 	if (sdlEvent.type == SDL_EventType::SDL_KEYDOWN) {
 		if (sdlEvent.key.keysym.scancode == SDL_SCANCODE_A) {
-			player->ApplyForce(Vec3(-5.0f, 0.0f, 0.0f));
-			player->isMoving(true);
+			player->setVelocityX(-5.0f);
 		}
 	}
 	else if (sdlEvent.type == SDL_EventType::SDL_KEYUP) {
-		if (sdlEvent.key.keysym.scancode == SDL_SCANCODE_A) {
-			player->UnsetForceX();
-			player->isMoving(true);
+		if (sdlEvent.key.keysym.scancode == SDL_SCANCODE_A && player->isGrounded()) {
+			//only set vel to 0 if player isgrounded
+			player->setVelocityX(0.0f);
 		}
 	}
 
 	if (sdlEvent.type == SDL_EventType::SDL_KEYDOWN) {
-		if (sdlEvent.key.keysym.scancode == SDL_SCANCODE_SPACE) {
+		if (sdlEvent.key.keysym.scancode == SDL_SCANCODE_SPACE && player->isGrounded()) {
+			//only allow player to jump if they were grounded
 			Debug::Info("Spacebar is pressed!", __FILE__, __LINE__);
-			player->ApplyForce(Vec3(0.0f, 15.0f, 0.0f));
-			player->isMoving(true);
+			player->setVelocityY(10.0f);
 		}
 	}
 

@@ -17,8 +17,8 @@ Player::Player()
 	mass = UNI_MASS;
 	gravity = -GRAVITY;
 
-	isMoving(false);
-	
+	is_moving = false;
+	is_grounded = false;
 }
 
 Player::Player(Vec3 pos_, Vec3 vel_, Vec3 accel_, float mass_)
@@ -33,31 +33,58 @@ Player::~Player()
 {
 }
 
+
+bool Player::isGrounded()
+{
+	if (pos.y <= 5.0f) {
+		is_grounded = true;
+		return true;
+	}
+	else {
+		is_grounded = false;
+		return false;
+	}
+}
+
 void Player::Update(float deltaTime)
 {
 
-	if (is_moving == false) {
-		return;
-	}
 
 	//Update position due to acceleration forces
 	accel.x = force.x / mass;
 	accel.y = gravity + force.y / mass;
-	vel += accel * deltaTime;
-	pos += vel * deltaTime;
-	
+	vel.x += accel.x * deltaTime;
+	vel.y += accel.y * deltaTime;
 
 	//wall and floor collisions to test player movement
-	if (pos.y < 3.5f) {
-		vel.y = -vel.y;
+	// if would collide, then stop, if wouldn't collide, update normally
+	if (pos.y + (vel.y * deltaTime) < 5.0f)
+	{
+		pos.y = 5.0f;
+		
 	}
-	if (pos.y > 15.0f) {
-		vel.y = -vel.y;
+	else if (pos.y + (vel.y * deltaTime) > 15.0f)
+	{
+		pos.y = 15.0f;
 	}
-	if (pos.x < 0.0f) {
-		vel.x = -vel.x;
+	else
+	{
+		pos.y += vel.y * deltaTime;
 	}
-	if (pos.x > 27.0f) {
-		vel.x = -vel.x;
+
+	if (pos.x + (vel.x * deltaTime) < 0.0f) {
+		pos.x = 0.0f;
+		
 	}
+	else if (pos.x + (vel.x * deltaTime) > 27.0f)
+	{
+		pos.x = 27.0f;
+		
+	}
+	else
+	{
+		pos.x += vel.x * deltaTime;
+	}
+
+
 }
