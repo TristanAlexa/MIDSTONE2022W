@@ -87,6 +87,7 @@ void Scene1::HandleEvents(const SDL_Event& sdlEvent) {
 	if (sdlEvent.type == SDL_EventType::SDL_KEYDOWN) {
 		if (sdlEvent.key.keysym.scancode == SDL_SCANCODE_SPACE && player->isGrounded()) {
 			//only allow player to jump if they were grounded
+			Debug::Info("Spacebar is pressed!", __FILE__, __LINE__);
 			player->setVelocityY(10.0f);
 		}
 	}
