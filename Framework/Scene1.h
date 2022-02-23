@@ -17,6 +17,7 @@ private:
 	//Body *damagedealers
 	
 	Player* player;
+	Body* floor1, * floor2, *rightwall, * leftwall;
 	
 public:
 	Scene1(SDL_Window* sdlWindow);
