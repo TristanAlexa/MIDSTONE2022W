@@ -5,6 +5,7 @@
 #include <SDL_image.h>
 #include "Timer.h"
 #include "Debug.h"
+#include "VMath.h"
 
 Scene1::Scene1(SDL_Window* sdlWindow_){
 

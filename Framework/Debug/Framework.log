@@ -1,1 +1,57 @@
-﻿  Framework.vcxproj -> C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Debug\Framework.exe
+﻿  CollisionManager.cpp
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\CollisionManager.cpp(6,28): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\CollisionManager.cpp(6,21): warning C4244: 'initializing': conversion from 'T' to 'const int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\CollisionManager.cpp(7,28): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\CollisionManager.cpp(7,21): warning C4244: 'initializing': conversion from 'T' to 'const int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\CollisionManager.cpp(17,72): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\CollisionManager.cpp(17,24): warning C4244: 'initializing': conversion from 'float' to 'const int', possible loss of data
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\CollisionManager.cpp(50,41): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\CollisionManager.cpp(50,22): warning C4244: 'initializing': conversion from 'int' to 'const float', possible loss of data
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\CollisionManager.cpp(51,43): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\CollisionManager.cpp(51,23): warning C4244: 'initializing': conversion from 'int' to 'const float', possible loss of data
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\CollisionManager.cpp(52,41): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\CollisionManager.cpp(52,22): warning C4244: 'initializing': conversion from 'int' to 'const float', possible loss of data
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\CollisionManager.cpp(53,43): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\CollisionManager.cpp(53,23): warning C4244: 'initializing': conversion from 'int' to 'const float', possible loss of data
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\CollisionManager.cpp(266,19): warning C4244: 'return': conversion from '_Ty' to 'int', possible loss of data
+          with
+          [
+              _Ty=float
+          ]
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\CollisionManager.cpp(273,35): warning C4244: 'initializing': conversion from 'const _Ty' to 'int', possible loss of data
+          with
+          [
+              _Ty=float
+          ]
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\CollisionManager.cpp(273,25): warning C4244: 'initializing': conversion from 'const _Ty' to 'const int', possible loss of data
+          with
+          [
+              _Ty=float
+          ]
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\CollisionManager.cpp(276,19): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\CollisionManager.cpp(278,20): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\CollisionManager.cpp(319,38): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\CollisionManager.cpp(319,23): warning C4244: 'initializing': conversion from 'double' to 'const float', possible loss of data
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\CollisionManager.cpp(320,38): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\CollisionManager.cpp(320,23): warning C4244: 'initializing': conversion from 'double' to 'const float', possible loss of data
+  GameObject.cpp
+  Scene1.cpp
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\Scene1.cpp(188,15): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  Generating Code...
+  Framework.vcxproj -> C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Debug\Framework.exe
