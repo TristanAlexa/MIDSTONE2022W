@@ -42,25 +42,26 @@ bool CollisionManager::squaredRadiusCheck(GameObject* object1, GameObject* objec
 	}
 }
 
-bool CollisionManager::AABBCheck(GameObject* object1, GameObject* object2)
+bool CollisionManager::AABBCheck(Player* object1, Body* object2)
 {
 	// prepare relevant variables
-	auto p1 = object1->getTransform()->position;
-	auto p2 = object2->getTransform()->position;
+	auto p1 = object1->getPos();
+	auto p2 = object2->getPos();
+
 	const float p1Width = object1->getWidth();
 	const float p1Height = object1->getHeight();
 	const float p2Width = object2->getWidth();
 	const float p2Height = object2->getHeight();
 
-	if (object1->isCentered())
-	{
-		p1 += glm::vec2(-p1Width * 0.5f, -p1Height * 0.5f);
-	}
+	//if (object1->isCentered())
+	//{
+	//	p1 += glm::vec2(-p1Width * 0.5f, -p1Height * 0.5f);
+	//}
 
-	if (object2->isCentered())
-	{
-		p2 += glm::vec2(-p2Width * 0.5f, -p2Height * 0.5f);
-	}
+	//if (object2->isCentered())
+	//{
+	//	p2 += glm::vec2(-p2Width * 0.5f, -p2Height * 0.5f);
+	//}
 
 	if (
 		p1.x < p2.x + p2Width &&
@@ -69,84 +70,84 @@ bool CollisionManager::AABBCheck(GameObject* object1, GameObject* object2)
 		p1.y + p1Height > p2.y
 		)
 	{
-		if (!object1->getRigidBody()->isColliding)
-		{
-			object1->getRigidBody()->isColliding = true;
+	//	if (!object1->getRigidBody()->isColliding)
+	//	{
+	//		object1->getRigidBody()->isColliding = true;
 
-			switch (object2->getType())
-			{
-			case AGENT:
-				std::cout << "Collision with SpaceShip!" << std::endl;
-				// SoundManager::Instance().playSound("boom", 0);
-				break;
-			default:
+	//		switch (object2->getType())
+	//		{
+	//		case AGENT:
+	//			std::cout << "Collision with SpaceShip!" << std::endl;
+	//			// SoundManager::Instance().playSound("boom", 0);
+	//			break;
+	//		default:
 
-				break;
-			}
+	//			break;
+	//		}
 
-			return true;
-		}
-		return false;
-	}
-	else
-	{
-		object1->getRigidBody()->isColliding = false;
-		return false;
-	}
-
-	return false;
-}
-
-bool CollisionManager::lineLineCheck(const glm::vec2 line1_start, const glm::vec2 line1_end, const glm::vec2 line2_start, const glm::vec2 line2_end)
-{
-	const auto x1 = line1_start.x;
-	const auto x2 = line1_end.x;
-	const auto x3 = line2_start.x;
-	const auto x4 = line2_end.x;
-	const auto y1 = line1_start.y;
-	const auto y2 = line1_end.y;
-	const auto y3 = line2_start.y;
-	const auto y4 = line2_end.y;
-
-	// calculate the distance to intersection point
-	const auto uA = ((x4 - x3) * (y1 - y3) - (y4 - y3) * (x1 - x3)) / ((y4 - y3) * (x2 - x1) - (x4 - x3) * (y2 - y1));
-	const auto uB = ((x2 - x1) * (y1 - y3) - (y2 - y1) * (x1 - x3)) / ((y4 - y3) * (x2 - x1) - (x4 - x3) * (y2 - y1));
-
-	// if uA and uB are between 0-1, lines are colliding
-	if (uA >= 0 && uA <= 1 && uB >= 0 && uB <= 1)
-	{
-		return true;
-	}
+	//		return true;
+	//	}
+	//	return false;
+	//}
+	//else
+	//{
+	//	object1->getRigidBody()->isColliding = false;
+	//	return false;
+	//}
 
 	return false;
 }
 
-bool CollisionManager::lineRectCheck(const glm::vec2 line_start, const glm::vec2 line_end, const glm::vec2 rect_start, const float rect_width, const float rect_height)
-{
-	const auto x1 = line_start.x;
-	const auto x2 = line_end.x;
-	const auto y1 = line_start.y;
-	const auto y2 = line_end.y;
-	const auto rx = rect_start.x;
-	const auto ry = rect_start.y;
-	const auto rw = rect_width;
-	const auto rh = rect_height;
+//bool CollisionManager::lineLineCheck(const glm::vec2 line1_start, const glm::vec2 line1_end, const glm::vec2 line2_start, const glm::vec2 line2_end)
+//{
+//	const auto x1 = line1_start.x;
+//	const auto x2 = line1_end.x;
+//	const auto x3 = line2_start.x;
+//	const auto x4 = line2_end.x;
+//	const auto y1 = line1_start.y;
+//	const auto y2 = line1_end.y;
+//	const auto y3 = line2_start.y;
+//	const auto y4 = line2_end.y;
+//
+//	// calculate the distance to intersection point
+//	const auto uA = ((x4 - x3) * (y1 - y3) - (y4 - y3) * (x1 - x3)) / ((y4 - y3) * (x2 - x1) - (x4 - x3) * (y2 - y1));
+//	const auto uB = ((x2 - x1) * (y1 - y3) - (y2 - y1) * (x1 - x3)) / ((y4 - y3) * (x2 - x1) - (x4 - x3) * (y2 - y1));
+//
+//	// if uA and uB are between 0-1, lines are colliding
+//	if (uA >= 0 && uA <= 1 && uB >= 0 && uB <= 1)
+//	{
+//		return true;
+//	}
+//
+//	return false;
+//}
 
-	// check if the line has hit any of the rectangle's sides
-	// uses the Line/Line function below
-	const auto left = lineLineCheck(glm::vec2(x1, y1), glm::vec2(x2, y2), glm::vec2(rx, ry), glm::vec2(rx, ry + rh));
-	const auto right = lineLineCheck(glm::vec2(x1, y1), glm::vec2(x2, y2), glm::vec2(rx + rw, ry), glm::vec2(rx + rw, ry + rh));
-	const auto top = lineLineCheck(glm::vec2(x1, y1), glm::vec2(x2, y2), glm::vec2(rx, ry), glm::vec2(rx + rw, ry));
-	const auto bottom = lineLineCheck(glm::vec2(x1, y1), glm::vec2(x2, y2), glm::vec2(rx, ry + rh), glm::vec2(rx + rw, ry + rh));
-
-	// if ANY of the above are true, the line
-	// has hit the rectangle
-	if (left || right || top || bottom) {
-		return true;
-	}
-
-	return false;
-}
+//bool CollisionManager::lineRectCheck(const glm::vec2 line_start, const glm::vec2 line_end, const glm::vec2 rect_start, const float rect_width, const float rect_height)
+//{
+//	const auto x1 = line_start.x;
+//	const auto x2 = line_end.x;
+//	const auto y1 = line_start.y;
+//	const auto y2 = line_end.y;
+//	const auto rx = rect_start.x;
+//	const auto ry = rect_start.y;
+//	const auto rw = rect_width;
+//	const auto rh = rect_height;
+//
+//	// check if the line has hit any of the rectangle's sides
+//	// uses the Line/Line function below
+//	const auto left = lineLineCheck(glm::vec2(x1, y1), glm::vec2(x2, y2), glm::vec2(rx, ry), glm::vec2(rx, ry + rh));
+//	const auto right = lineLineCheck(glm::vec2(x1, y1), glm::vec2(x2, y2), glm::vec2(rx + rw, ry), glm::vec2(rx + rw, ry + rh));
+//	const auto top = lineLineCheck(glm::vec2(x1, y1), glm::vec2(x2, y2), glm::vec2(rx, ry), glm::vec2(rx + rw, ry));
+//	const auto bottom = lineLineCheck(glm::vec2(x1, y1), glm::vec2(x2, y2), glm::vec2(rx, ry + rh), glm::vec2(rx + rw, ry + rh));
+//
+//	// if ANY of the above are true, the line
+//	// has hit the rectangle
+//	if (left || right || top || bottom) {
+//		return true;
+//	}
+//
+//	return false;
+//}
 
 //bool CollisionManager::lineRectEdgeCheck(const glm::vec2 line_start, const glm::vec2 rect_start, const float rect_width, const float rect_height)
 //{

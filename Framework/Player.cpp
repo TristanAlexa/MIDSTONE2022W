@@ -19,6 +19,8 @@ Player::Player()
 
 	is_moving = false;
 	is_grounded = false;
+
+	
 }
 
 Player::Player(Vec3 pos_, Vec3 vel_, Vec3 accel_, float mass_)
@@ -33,6 +35,10 @@ Player::~Player()
 {
 }
 
+SDL_Point Player::getsize(SDL_Texture* texture)
+{
+	return SDL_Point();
+}
 
 bool Player::isGrounded()
 {
@@ -87,4 +93,73 @@ void Player::Update(float deltaTime)
 	}
 
 
+}
+
+//Transform* Player::getTransform()
+//{
+//	return nullptr;
+//}
+//
+//RigidBody* Player::getRigidBody()
+//{
+//	return nullptr;
+//}
+
+int Player::getWidth() const
+{
+	return m_width;
+}
+
+int Player::getHeight() const
+{
+	return m_height;
+}
+
+void Player::setWidth(int new_width)
+{
+	m_width = new_width;
+	new_width = getsize(texture).x;
+
+}
+
+void Player::setHeight(int new_height)
+{
+	m_height = new_height;
+	new_height = getsize(texture).y;
+}
+
+//Player Player::getType() const
+//{
+//	return Player();
+//}
+//
+//void Player::setType(Player new_type)
+//{
+//}
+
+void Player::setEnabled(bool state)
+{
+}
+
+bool Player::isEnabled() const
+{
+	return false;
+}
+
+void Player::setVisible(bool state)
+{
+}
+
+bool Player::isVisible() const
+{
+	return false;
+}
+
+void Player::setIsCentered(bool state)
+{
+}
+
+bool Player::isCentered() const
+{
+	return false;
 }

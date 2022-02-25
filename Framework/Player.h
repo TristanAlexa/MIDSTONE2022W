@@ -14,6 +14,8 @@ private:
 	Vec3 vel;
 	Vec3 accel;
 	Vec3 force;
+	// Vec3 size;
+
 	float gravity;
 	float mass;
 
@@ -22,8 +24,42 @@ private:
 
 	SDL_Surface* image;
 	SDL_Texture* texture;
+	SDL_Point getsize(SDL_Texture* texture);
 	bool is_moving;
 	bool is_grounded;
+
+	// Test Run
+		// Draw the object
+	virtual void draw() = 0;
+
+	// Update the object
+	virtual void update() = 0;
+
+	// remove anything that needs to be deleted
+	virtual void clean() = 0;
+
+	// getters for common variables
+	//Transform* getTransform();
+
+	//// getters and setters for physics properties
+	//RigidBody* getRigidBody();
+
+	// getters and setters for game object properties
+	int getWidth() const;
+	int getHeight() const;
+	void setWidth(int new_width);
+	void setHeight(int new_height);
+	//Player getType() const;
+	//void setType(Player new_type);
+
+	void setEnabled(bool state);
+	bool isEnabled() const;
+
+	void setVisible(bool state);
+	bool isVisible() const;
+
+	void setIsCentered(bool state);
+	bool isCentered() const;
 
 public:
 	Player();
@@ -43,6 +79,7 @@ public:
 	inline void UnsetForceY() { force.y = 0.0f; }
 
 	//Getter-Setters
+	// Vec3 getsize() { return size; }
 	Vec3 getPos() { return pos; }
 	Vec3 getVelocity() { return vel; }
 	void setVelocity(Vec3 vel_) { vel = vel_; }  //overloaded operator
@@ -60,6 +97,23 @@ public:
 	SDL_Surface* getImage() { return image; }
 	void setTexture(SDL_Texture* texture_) { texture = texture_; }
 	SDL_Texture* getTexture() { return texture; }
+
+	// Test Run
+
+	// transform component
+	/*Transform m_transform;*/
+
+	// rigid body component
+	/*RigidBody m_rigidBody;*/
+
+	// size variables
+	int m_width;
+	int m_height;
+	/*GameObjectType m_type;*/
+
+	bool m_enabled;
+	bool m_visible;
+	bool m_isCentered;
 };
 #endif
 

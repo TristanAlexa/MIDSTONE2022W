@@ -1,6 +1,11 @@
 #include "Body.h"
 
 
+SDL_Point Body::getsize(SDL_Texture* texture)
+{
+	return SDL_Point();
+}
+
 Body::Body(){
 	pos.x = 15.0f;
 	pos.y = 12.5f;
@@ -48,4 +53,70 @@ void Body::Update(float deltaTime){
 	if (pos.x > 29.0f) {
 		vel.x = -vel.x;
 	}
+}
+
+//Transform* Body::getTransform()
+//{
+//	return nullptr;
+//}
+//
+//RigidBody* Body::getRigidBody()
+//{
+//	return nullptr;
+//}
+
+int Body::getWidth() const
+{
+	return 0;
+}
+
+int Body::getHeight() const
+{
+	return 0;
+}
+
+void Body::setWidth(int new_width)
+{
+	new_width = getsize(texture).x;
+}
+
+void Body::setHeight(int new_height)
+{
+	new_height = getsize(texture).y;
+}
+
+//Body Body::getType() const
+//{
+//	return Body();
+//}
+//
+//void Body::setType(Body new_type)
+//{
+//}
+
+void Body::setEnabled(bool state)
+{
+}
+
+bool Body::isEnabled() const
+{
+	return false;
+}
+
+void Body::setVisible(bool state)
+{
+}
+
+bool Body::isVisible() const
+{
+	return false;
+}
+
+void Body::setIsCentered(bool state)
+{
+}
+
+bool Body::isCentered() const
+{
+	return false;
 }
