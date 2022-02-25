@@ -139,12 +139,6 @@ void Scene1::HandleEvents(const SDL_Event& sdlEvent) {
 			player->setVelocityY(10.0f);
 		}
 	}
-
-	else if (sdlEvent.type == SDL_EventType::SDL_KEYUP) {
-		if (sdlEvent.key.keysym.scancode == SDL_SCANCODE_SPACE) {
-			player->UnsetForceY();
-		}
-	}
 }
 
 void Scene1::Render() {
