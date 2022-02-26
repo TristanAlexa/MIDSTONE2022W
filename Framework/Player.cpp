@@ -18,25 +18,24 @@ Player::Player()
 
 	is_moving = false;
 	is_grounded = false;
-
-	
 }
 
-Player::Player(Vec3 pos_, Vec3 vel_, Vec3 accel_)
+Player::Player(Vec3 pos_, Vec3 vel_, Vec3 accel_, float mass_)
 {
 	pos = pos_;
 	vel = vel_;
 	accel = accel_;
+	mass = mass_;
 }
 
 Player::~Player()
 {
 }
 
-SDL_Point Player::getsize(SDL_Texture* texture)
-{
-	return SDL_Point();
-}
+//SDL_Point Player::getsize(SDL_Texture* texture)
+//{
+//	return SDL_Point();
+//}
 
 bool Player::isGrounded()
 {
@@ -52,8 +51,6 @@ bool Player::isGrounded()
 
 void Player::Update(float deltaTime)
 {
-
-
 	//Update position due to acceleration forces
 	vel.y += accel.y * deltaTime;
 
@@ -86,9 +83,9 @@ void Player::Update(float deltaTime)
 	{
 		pos.x += vel.x * deltaTime;
 	}
-
-
 }
+
+// Test Run **************************************
 
 //Transform* Player::getTransform()
 //{
@@ -100,28 +97,28 @@ void Player::Update(float deltaTime)
 //	return nullptr;
 //}
 
-int Player::getWidth() const
-{
-	return m_width;
-}
-
-int Player::getHeight() const
-{
-	return m_height;
-}
-
-void Player::setWidth(int new_width)
-{
-	m_width = new_width;
-	new_width = getsize(texture).x;
-
-}
-
-void Player::setHeight(int new_height)
-{
-	m_height = new_height;
-	new_height = getsize(texture).y;
-}
+//int Player::getWidth() const
+//{
+//	return m_width;
+//}
+//
+//int Player::getHeight() const
+//{
+//	return m_height;
+//}
+//
+//void Player::setWidth(int new_width)
+//{
+//	m_width = new_width;
+//	new_width = getsize(texture).x;
+//
+//}
+//
+//void Player::setHeight(int new_height)
+//{
+//	m_height = new_height;
+//	new_height = getsize(texture).y;
+//}
 
 //Player Player::getType() const
 //{
@@ -132,29 +129,31 @@ void Player::setHeight(int new_height)
 //{
 //}
 
-void Player::setEnabled(bool state)
-{
-}
+//void Player::setEnabled(bool state)
+//{
+//}
+//
+//bool Player::isEnabled() const
+//{
+//	return false;
+//}
+//
+//void Player::setVisible(bool state)
+//{
+//}
+//
+//bool Player::isVisible() const
+//{
+//	return false;
+//}
+//
+//void Player::setIsCentered(bool state)
+//{
+//}
+//
+//bool Player::isCentered() const
+//{
+//	return false;
+//}
 
-bool Player::isEnabled() const
-{
-	return false;
-}
-
-void Player::setVisible(bool state)
-{
-}
-
-bool Player::isVisible() const
-{
-	return false;
-}
-
-void Player::setIsCentered(bool state)
-{
-}
-
-bool Player::isCentered() const
-{
-	return false;
-}
+// Test Run **************************************

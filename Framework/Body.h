@@ -16,38 +16,33 @@ private:
 
 	bool is_moving;
 
-	// Test Run
-		// Draw the object
-	virtual void draw() = 0;
-
+	// Test Run **************************************
+	// Draw the object
+	//virtual void draw() = 0;
 	// Update the object
-	virtual void update() = 0;
-
+	//virtual void update() = 0;
 	// remove anything that needs to be deleted
-	virtual void clean() = 0;
-
+	//virtual void clean() = 0;
 	//// getters for common variables
 	//Transform* getTransform();
-
 	//// getters and setters for physics properties
 	//RigidBody* getRigidBody();
 
 	// getters and setters for game object properties
-	int getWidth() const;
-	int getHeight() const;
-	void setWidth(int new_width);
-	void setHeight(int new_height);
+	//int getWidth() const;
+	//int getHeight() const;
+	//void setWidth(int new_width);
+	//void setHeight(int new_height);
 	//Body getType() const;
 	//void setType(Body new_type);
+	//void setEnabled(bool state);
+	//bool isEnabled() const;
+	//void setVisible(bool state);
+	//bool isVisible() const;
+	//void setIsCentered(bool state);
+	//bool isCentered() const;
+	// Test Run **************************************
 
-	void setEnabled(bool state);
-	bool isEnabled() const;
-
-	void setVisible(bool state);
-	bool isVisible() const;
-
-	void setIsCentered(bool state);
-	bool isCentered() const;
 public:
 	Body();
 	Body(Vec3 pos_, Vec3 vel_, Vec3 accel_, float mass_);

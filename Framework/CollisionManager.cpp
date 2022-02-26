@@ -48,10 +48,10 @@ bool CollisionManager::AABBCheck(Player* object1, Body* object2)
 	auto p1 = object1->getPos();
 	auto p2 = object2->getPos();
 
-	const float p1Width = object1->getWidth();
-	const float p1Height = object1->getHeight();
-	const float p2Width = object2->getWidth();
-	const float p2Height = object2->getHeight();
+	//const float p1Width = object1->getWidth();
+	//const float p1Height = object1->getHeight();
+	//const float p2Width = object2->getWidth();
+	//const float p2Height = object2->getHeight();
 
 	//if (object1->isCentered())
 	//{
@@ -63,13 +63,13 @@ bool CollisionManager::AABBCheck(Player* object1, Body* object2)
 	//	p2 += glm::vec2(-p2Width * 0.5f, -p2Height * 0.5f);
 	//}
 
-	if (
-		p1.x < p2.x + p2Width &&
-		p1.x + p1Width > p2.x &&
-		p1.y < p2.y + p2Height &&
-		p1.y + p1Height > p2.y
-		)
-	{
+	//if (
+	//	p1.x < p2.x + p2Width &&
+	//	p1.x + p1Width > p2.x &&
+	//	p1.y < p2.y + p2Height &&
+	//	p1.y + p1Height > p2.y
+	//	)
+	//{
 	//	if (!object1->getRigidBody()->isColliding)
 	//	{
 	//		object1->getRigidBody()->isColliding = true;

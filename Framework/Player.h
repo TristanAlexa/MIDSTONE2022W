@@ -24,42 +24,38 @@ private:
 
 	SDL_Surface* image;
 	SDL_Texture* texture;
-	SDL_Point getsize(SDL_Texture* texture);
+	// SDL_Point getsize(SDL_Texture* texture);
 	bool is_moving;
 	bool is_grounded;
 
-	// Test Run
+	// Test Run **************************************
+	// 
 		// Draw the object
-	virtual void draw() = 0;
-
+	//virtual void draw() = 0;
 	// Update the object
-	virtual void update() = 0;
-
+	//virtual void update() = 0;
 	// remove anything that needs to be deleted
-	virtual void clean() = 0;
-
+	//virtual void clean() = 0;
 	// getters for common variables
 	//Transform* getTransform();
-
 	//// getters and setters for physics properties
 	//RigidBody* getRigidBody();
-
 	// getters and setters for game object properties
-	int getWidth() const;
-	int getHeight() const;
-	void setWidth(int new_width);
-	void setHeight(int new_height);
+	//int getWidth() const;
+	//int getHeight() const;
+	//void setWidth(int new_width);
+	//void setHeight(int new_height);
 	//Player getType() const;
 	//void setType(Player new_type);
 
-	void setEnabled(bool state);
-	bool isEnabled() const;
+	//void setEnabled(bool state);
+	//bool isEnabled() const;
+	//void setVisible(bool state);
+	//bool isVisible() const;
+	//void setIsCentered(bool state);
+	//bool isCentered() const;
 
-	void setVisible(bool state);
-	bool isVisible() const;
-
-	void setIsCentered(bool state);
-	bool isCentered() const;
+	// Test Run **************************************
 
 public:
 	Player();
@@ -67,7 +63,7 @@ public:
 	~Player();
 
 	void isMoving(bool TorF) { is_moving = TorF; }
-	//void isGrounded(bool TorF) { is_grounded = TorF; }
+	void isGrounded(bool TorF) { is_grounded = TorF; }
 	bool isGrounded();
 	void Update(float deltaTime);
 
@@ -98,7 +94,7 @@ public:
 	void setTexture(SDL_Texture* texture_) { texture = texture_; }
 	SDL_Texture* getTexture() { return texture; }
 
-	// Test Run
+	// Test Run **************************************
 
 	// transform component
 	/*Transform m_transform;*/
@@ -107,13 +103,15 @@ public:
 	/*RigidBody m_rigidBody;*/
 
 	// size variables
-	int m_width;
-	int m_height;
+	// int m_width;
+	// int m_height;
 	/*GameObjectType m_type;*/
 
-	bool m_enabled;
-	bool m_visible;
-	bool m_isCentered;
+	// bool m_enabled;
+	// bool m_visible;
+	// bool m_isCentered;
+	// Test Run **************************************
+
 };
 #endif
 
