@@ -3,6 +3,7 @@
 
 #include "MMath.h"
 #include "Scene.h"
+#include "GameManager.h"
 #include <SDL.h>
 #include "Body.h"
 
@@ -11,11 +12,12 @@ class Scene0 : public Scene {
 private:
 	SDL_Window *window;
 	Matrix4 projectionMatrix;
+	GameManager* game;
 	Body *flappybird;
 	Body *cliff;
 	
 public:
-	Scene0(SDL_Window* sdlWindow);
+	Scene0(SDL_Window* sdlWindow, GameManager* game);
 	~Scene0();
 	bool OnCreate();
 	void OnDestroy();
