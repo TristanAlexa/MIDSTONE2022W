@@ -1,5 +1,5 @@
-#ifndef SCENE1_H
-#define SCENE1_H
+#ifndef SCENE2_H
+#define SCENE2_H
 
 #include "MMath.h"
 #include "Scene.h"
@@ -10,20 +10,19 @@
 #include "Player.h"
 
 using namespace MATH;
-class Scene1 : public Scene {
+class Scene2 : public Scene
+{
 private:
-	SDL_Window *window;
-	SDL_Renderer *renderer;
+	SDL_Window* window;
+	SDL_Renderer* renderer;
 	Matrix4 projectionMatrix;
 	GameManager* game;
-	//Body *damagedealers
-	
+
 	Player* player;
-	Body* floor1, * floor2, *rightwall, * leftwall;
-	
+
 public:
-	Scene1(SDL_Window* sdlWindow_, GameManager* game_);
-	~Scene1();
+	Scene2(SDL_Window* sdlWindow_, GameManager* game_);
+	~Scene2();
 	bool OnCreate();
 	void OnDestroy();
 	void Update(const float time);

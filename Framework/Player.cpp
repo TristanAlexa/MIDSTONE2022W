@@ -74,11 +74,7 @@ void Player::Update(float deltaTime)
 		pos.x = 0.0f;
 		
 	}
-	else if (pos.x + (vel.x * deltaTime) > 27.0f)
-	{
-		pos.x = 27.0f;
-		
-	}
+	
 	else
 	{
 		pos.x += vel.x * deltaTime;

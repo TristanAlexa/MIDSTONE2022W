@@ -18,6 +18,8 @@ private:
 	class Timer *timer;
 	bool isRunning;
 	Scene *currentScene;
+	Uint32 changeSceneEventType; //event type number for user defined events
+	
 
 public:
 	GameManager();
@@ -25,6 +27,8 @@ public:
 	bool OnCreate();
 	void OnDestroy();
 
+	Uint32 getChangeScene() { return changeSceneEventType; }
+	
 	void Run();
 };
 #endif

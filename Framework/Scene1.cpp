@@ -98,14 +98,26 @@ bool Scene1::OnCreate() {
 	return true;
 }
 
-void Scene1::OnDestroy() {}
+void Scene1::OnDestroy() {
+	
+}
 
 void Scene1::Update(const float deltaTime) {
 	player->Update(deltaTime);
 	
-	//Gails code optional way of player and game manager communication can do if we want
-	//If player.pos collides with winnning game object end the scene
-	// if (....) {game-aFunctionToSetABooleanToSwitchScene();} //will change a boolean in game manager
+	// Push change scene event to queue when player reaches right side of screen
+	Vec3 bottomRight(27.0f, 6.0f, 0.0f);
+	if (VMath::distance(player->getPos(), bottomRight) < 1.5f)
+	{
+		//create event for scene change
+		SDL_Event event;
+		SDL_memset(&event, 0, sizeof(event));
+		event.type = game->getChangeScene();
+		event.user.code = 1;
+		event.user.data1 = nullptr;
+		event.user.data2 = nullptr;
+		SDL_PushEvent(&event);
+	}
 }
 
 void Scene1::HandleEvents(const SDL_Event& sdlEvent) {
@@ -143,6 +155,7 @@ void Scene1::HandleEvents(const SDL_Event& sdlEvent) {
 }
 
 void Scene1::Render() {
+	
 	SDL_SetRenderDrawColor(renderer, 112, 128, 144, 0); // drawing grey colour for background
 	SDL_RenderClear(renderer);
 
@@ -200,5 +213,4 @@ void Scene1::Render() {
 	}
 	SDL_RenderPresent(renderer);
 
-	// SDL_UpdateWindowSurface(window);
 }
