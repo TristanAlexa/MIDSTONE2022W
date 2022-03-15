@@ -11,9 +11,7 @@ GameManager::GameManager() {
 	timer = nullptr;
 	isRunning = true;
 	currentScene = nullptr;
-
-	//create user defined events
-	changeSceneEventType = SDL_RegisterEvents(1);
+	changeSceneEventType = false;
 }
 
 
@@ -49,6 +47,10 @@ bool GameManager::OnCreate() {
 		return false;
 	}
 
+	// //Scene 2 not being created multiple times when changeSceneEvent type is initialized to false
+	// //Gets created multiple times with the below *needed* line called
+	// //create user defined events
+	//changeSceneEventType = SDL_RegisterEvents(1);
 	if (changeSceneEventType == ((Uint32) - 1) ) {
 		OnDestroy();
 		return false;

@@ -1,5 +1,2 @@
-﻿  Body.cpp
-  Player.cpp
-  Window.cpp
-  Generating Code...
-  Framework.vcxproj -> C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Debug\Framework.exe
+﻿  GameManager.cpp
+  Framework.vcxproj -> C:\Users\trist\OneDrive\Desktop\MIDSTONE\SDL_Framework21.0.0 - PLAYERCLASS\Debug\Framework.exe
