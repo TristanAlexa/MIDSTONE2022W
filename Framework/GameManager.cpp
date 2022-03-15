@@ -12,6 +12,7 @@ GameManager::GameManager() {
 	isRunning = true;
 	currentScene = nullptr;
 	changeSceneEventType = false;
+	//changeSceneEventType2 = false;
 }
 
 
@@ -48,13 +49,17 @@ bool GameManager::OnCreate() {
 	}
 
 	// //Scene 2 not being created multiple times when changeSceneEvent type is initialized to false
-	// //Gets created multiple times with the below *needed* line called
-	// //create user defined events
-	//changeSceneEventType = SDL_RegisterEvents(1);
+	// //Gets created multiple times with the below *needed* line called. Therefore cannot register/create multiple events
+	//changeSceneEventType = SDL_RegisterEvents(1); // create user defined events
 	if (changeSceneEventType == ((Uint32) - 1) ) {
 		OnDestroy();
 		return false;
 	}
+
+	/*if (changeSceneEventType2 == ((Uint32)-1)) {
+		OnDestroy();
+		return false;
+	}*/
 
 	return true;
 }
@@ -83,6 +88,19 @@ void GameManager::Run() {
 				isRunning = false;
 			}
 		}
+
+		//else if (sdlEvent.type == changeSceneEventType2)
+		//{
+		//	// specific scene to scene switch
+		//	currentScene->OnDestroy();
+		//	delete currentScene;
+		//	currentScene = new Scene0(windowPtr->GetSDL_Window(), this);
+		//	if (!currentScene->OnCreate())
+		//	{
+		//		isRunning = false;
+		//	}
+		//}
+
 		else if (sdlEvent.type == SDL_EventType::SDL_KEYDOWN)
 		{
 			if (sdlEvent.key.keysym.scancode == SDL_SCANCODE_ESCAPE)

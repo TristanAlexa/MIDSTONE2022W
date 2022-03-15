@@ -65,11 +65,17 @@ void Scene2::Update(const float deltaTime)
 
 	// Checking when to change scene
 	Vec3 bottomRight(27.0f, 6.0f, 0.0f);
-	if (VMath::distance(player->getPos(), bottomRight) < 1.5f)
-	{
-		//create event for scene change
-		
-	}
+	//if (VMath::distance(player->getPos(), bottomRight) < 1.5f)
+	//{
+	//	//create event for scene change
+	//	SDL_Event event;
+	//	SDL_memset(&event, 0, sizeof(event));
+	//	event.type = game->getChangeScene2();
+	//	event.user.code = 2;
+	//	event.user.data1 = nullptr;
+	//	event.user.data2 = nullptr;
+	//	SDL_PushEvent(&event);
+	//}
 }
 
 void Scene2::HandleEvents(const SDL_Event& sdlEvent)
