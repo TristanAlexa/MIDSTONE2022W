@@ -22,10 +22,17 @@ bool CollisionManager::squaredRadiusCheck(GameObject* object1, GameObject* objec
 			object1->getRigidBody()->isColliding = true;
 
 			switch (object2->getType()) {
+<<<<<<< Updated upstream
 			case TARGET:
 				std::cout << "Collision with Target!" << std::endl;
 				// SoundManager::Instance().playSound("yay", 0);
 				break;
+=======
+			//case TARGET:
+			//	std::cout << "Collision with Target!" << std::endl;
+			//	// SoundManager::Instance().playSound("yay", 0);
+			//	break;
+>>>>>>> Stashed changes
 			default:
 
 				break;

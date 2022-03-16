@@ -162,7 +162,7 @@ void Scene1::Render() {
 	SDL_QueryTexture(floor2->getTexture(), nullptr, nullptr, &w, &h);
 	square.x = static_cast<int>(screenCoords.x);
 	square.y = static_cast<int>(screenCoords.y);
-	square.w = w /2;
+	square.w = w / 2;
 	square.h = h / 3;
 	SDL_RenderCopyEx(renderer, floor2->getTexture(), nullptr, &square, 0.0, nullptr, SDL_FLIP_NONE);
 
