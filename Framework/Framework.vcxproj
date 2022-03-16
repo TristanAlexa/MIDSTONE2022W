@@ -153,6 +153,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Scene0.cpp" />
     <ClCompile Include="Scene1.cpp" />
+    <ClCompile Include="Scene2.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="VMath.cpp" />
     <ClCompile Include="Window.cpp" />
@@ -171,6 +172,7 @@
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Scene0.h" />
     <ClInclude Include="Scene1.h" />
+    <ClInclude Include="Scene2.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="Vector.h" />

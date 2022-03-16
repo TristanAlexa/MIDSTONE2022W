@@ -85,7 +85,7 @@ public:
 	Vec3 getAcceleration() { return accel; }
 	float getRadius() { return radius; }
 	float getMass() { return mass; }
-	float getRotationZ() { return rotationZ; }\
+	float getRotationZ() { return rotationZ; }
 	inline void setMass(float mass_) { mass = mass_; }
 	inline void setGravity(float gravity_) { gravity = gravity_; }
 

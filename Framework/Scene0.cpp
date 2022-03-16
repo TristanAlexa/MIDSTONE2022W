@@ -1,8 +1,11 @@
 #include "Scene0.h"
+#include "Debug.h"
 #include <SDL.h>
 #include <SDL_image.h>
-Scene0::Scene0(SDL_Window* sdlWindow_){
+Scene0::Scene0(SDL_Window* sdlWindow_, GameManager* game_){
+	Debug::Info("Created Scene0: ", __FILE__, __LINE__);
 	window = sdlWindow_;
+	game = game_;
 	flappybird = new Body(Vec3(0.0f, 15.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, -9.8f, 0.0f), 1.0f);
 	cliff = new Body(Vec3(0.0f, 15.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), 1.0f);
 }
