@@ -1,8 +1,13 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 ﻿  Body.cpp
   Player.cpp
   Window.cpp
   Generating Code...
+=======
+﻿  Scene1.cpp
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\Scene1.cpp(187,15): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+>>>>>>> Stashed changes
 =======
 ﻿  Scene1.cpp
 C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\Scene1.cpp(187,15): warning C4244: '=': conversion from 'double' to 'int', possible loss of data

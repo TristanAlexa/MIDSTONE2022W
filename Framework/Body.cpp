@@ -1,12 +1,15 @@
 #include "Body.h"
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
 //SDL_Point Body::getsize(SDL_Texture* texture)
 //{
 //	return SDL_Point();
 //}
 
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 Body::Body(){
