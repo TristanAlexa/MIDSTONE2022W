@@ -18,8 +18,13 @@ private:
 	GameManager* game;
 	//Body *damagedealers
 	
+	// main player pointer and dimensions
 	Player* player;
+	int playerWidth, playerHeight;
+
+	// floor pointers and dimensions
 	Body* floor1, * floor2, *rightwall, * leftwall;
+	int floorWidth, floorHeight;
 	
 public:
 	Scene1(SDL_Window* sdlWindow_, GameManager* game_);

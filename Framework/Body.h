@@ -12,7 +12,6 @@ private:
 	float mass;
 	SDL_Surface *image;
 	SDL_Texture* texture;
-	SDL_Point getsize(SDL_Texture* texture);
 
 	bool is_moving;
 
@@ -56,5 +55,7 @@ public:
 	SDL_Texture* getTexture() { return texture; }
 	void setTexture(SDL_Texture  *texture_) { texture = texture_; }
 	Vec3 getVelocity() { return vel; }
+
+	SDL_Point getsize(SDL_Texture* texture);
 };
 #endif

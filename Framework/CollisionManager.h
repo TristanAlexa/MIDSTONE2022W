@@ -14,6 +14,9 @@
 class CollisionManager
 {
 public:
+	// Current collision test method being used
+	static bool checkCollision(Player* player, Body* collidedObject);
+
 	static int squaredDistance(glm::vec2 p1, glm::vec2 p2);
 	static bool squaredRadiusCheck(GameObject* object1, GameObject* object2);
 

@@ -1,6 +1,40 @@
 #include "CollisionManager.h"
 #include <algorithm>
 
+/* Collision check currently INCRORRECTLY returning true every frame!!
+	Either a problem with the collision check logic or how I set up the object sides
+
+	I could be wrongly assuming that the Positions of our objects is the most bottom left side of the texture.
+	If this is the case, the positions are most likely centered to the texture of the object, and need to use the bool isCentered() used in the AABB check function
+*/
+bool CollisionManager::checkCollision(Player* player, Body* collidedObject)
+{
+	// Sides of objects. A: player, B: walls
+	int leftA, leftB;
+	int rightA, rightB;
+	int topA, topB;
+	int bottomA, bottomB;
+
+	// Calculate player sides
+	leftA = player->getPos().x; 
+	rightA = player->getPos().x + player->getsize(player->getTexture()).x;
+	topA = player->getPos().y;
+	bottomA = player->getPos().y + player->getsize(player->getTexture()).y;
+
+	// calculate collided objects size
+	leftB = collidedObject->getPos().x;
+	rightB = collidedObject->getPos().x + collidedObject->getsize(collidedObject->getTexture()).x;
+	topB = collidedObject->getPos().y;
+	bottomB = collidedObject->getPos().y + collidedObject->getsize(collidedObject->getTexture()).y;
+
+	if (leftA < rightB && rightA > leftB && topA < bottomB && bottomA > topB)
+	{
+		//printf("Collision has been detected");
+		return true;
+	}
+	return false;
+}
+
 int CollisionManager::squaredDistance(const glm::vec2 p1, const glm::vec2 p2)
 {
 	const int diffOfXs = p2.x - p1.x;

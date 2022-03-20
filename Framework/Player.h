@@ -24,7 +24,7 @@ private:
 
 	SDL_Surface* image;
 	SDL_Texture* texture;
-	// SDL_Point getsize(SDL_Texture* texture);
+
 	bool is_moving;
 	bool is_grounded;
 
@@ -75,7 +75,6 @@ public:
 	inline void UnsetForceY() { force.y = 0.0f; }
 
 	//Getter-Setters
-	// Vec3 getsize() { return size; }
 	Vec3 getPos() { return pos; }
 	Vec3 getVelocity() { return vel; }
 	void setVelocity(Vec3 vel_) { vel = vel_; }  //overloaded operator
@@ -93,6 +92,9 @@ public:
 	SDL_Surface* getImage() { return image; }
 	void setTexture(SDL_Texture* texture_) { texture = texture_; }
 	SDL_Texture* getTexture() { return texture; }
+
+	// get size of texture
+	SDL_Point getsize(SDL_Texture* texture);
 
 	// Test Run **************************************
 

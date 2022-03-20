@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "CollisionManager.h"
 
 Player::Player()
 {
@@ -18,6 +19,9 @@ Player::Player()
 
 	is_moving = false;
 	is_grounded = false;
+
+	image = NULL;
+	texture = NULL;
 }
 
 Player::Player(Vec3 pos_, Vec3 vel_, Vec3 accel_, float mass_)
@@ -32,10 +36,12 @@ Player::~Player()
 {
 }
 
-//SDL_Point Player::getsize(SDL_Texture* texture)
-//{
-//	return SDL_Point();
-//}
+SDL_Point Player::getsize(SDL_Texture* texture)
+{
+	SDL_Point size;
+	SDL_QueryTexture(texture, NULL, NULL, &size.x, &size.y);
+	return size;
+}
 
 bool Player::isGrounded()
 {
@@ -53,7 +59,6 @@ void Player::Update(float deltaTime)
 {
 	//Update position due to acceleration forces
 	vel.y += accel.y * deltaTime;
-
 	//wall and floor collisions to test player movement
 	// if would collide, then stop, if wouldn't collide, update normally
 	if (pos.y + (vel.y * deltaTime) < 5.0f)

@@ -6,6 +6,8 @@
 #include "Timer.h"
 #include "Debug.h"
 #include "VMath.h"
+#include "CollisionManager.h"
+
 
 Scene1::Scene1(SDL_Window* sdlWindow_, GameManager* game_){
 
@@ -21,7 +23,7 @@ Scene1::Scene1(SDL_Window* sdlWindow_, GameManager* game_){
 	//Create player object, set initial pos
 	player = new Player();
 	player->setPosition(Vec3(5.0f, 5.0f, 0.0f));
-
+	
 	floor1 = new Body(Vec3(4.0f, 1.25f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), 1.0f);
 	floor2 = new Body(Vec3(15.0f, 1.25f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), 1.0f);
 	leftwall = new Body(Vec3(0.0f, 7.5f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), 1.0f);
@@ -48,6 +50,7 @@ bool Scene1::OnCreate() {
 
 	//Turn on SDL Imaging subsystem and attach images to objects
 	IMG_Init(IMG_INIT_PNG);
+
 	SDL_Surface *playerImage = IMG_Load("textures/playerSprite.png");
 	SDL_Texture* playerTexture = SDL_CreateTextureFromSurface(renderer, playerImage);
 	if(playerImage == nullptr) {
@@ -55,6 +58,12 @@ bool Scene1::OnCreate() {
 		return false;
 	}
 	player->setTexture(playerTexture);
+
+	// get player texture dimensions
+	playerWidth = player->getsize(playerTexture).x;
+	printf("playerTexture width: %d", playerWidth); 
+	playerHeight = player->getsize(playerTexture).y;
+	printf("playerTexture height: %d", playerHeight);
 
 	IMG_Init(IMG_INIT_JPG);
 	SDL_Surface* floor1Image = IMG_Load("textures/Stone.jpg");
@@ -64,6 +73,13 @@ bool Scene1::OnCreate() {
 		return false;
 	}
 	floor1->setTexture(floor1Texture);
+
+	// get stone floor object dimensions
+	floorWidth = floor1->getsize(floor1Texture).x;
+	floorHeight = floor1->getsize(floor1Texture).y;
+	printf("Floor Texture width: %d", floorWidth);
+	playerHeight = player->getsize(playerTexture).y;
+	printf("Floor Texture height: %d", floorHeight);
 
 	SDL_Surface* floor2Image = IMG_Load("textures/Stone.jpg");
 	SDL_Texture* floor2Texture = SDL_CreateTextureFromSurface(renderer, floor2Image);
@@ -104,6 +120,15 @@ void Scene1::OnDestroy() {
 
 void Scene1::Update(const float deltaTime) {
 	player->Update(deltaTime);
+	
+	if (CollisionManager::checkCollision(player, floor1) == true)
+	{
+		// stop the player from updating its position
+	}
+	else if (CollisionManager::checkCollision(player, floor1) == false)
+	{
+		// move player normally
+	}
 	
 	// Push change scene event to queue when player reaches right side of screen
 	Vec3 bottomRight(27.0f, 6.0f, 0.0f);

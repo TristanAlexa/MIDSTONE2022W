@@ -2,12 +2,15 @@
 
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
 //SDL_Point Body::getsize(SDL_Texture* texture)
 //{
 //	return SDL_Point();
 //}
 
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -42,6 +45,15 @@ Body::~Body(){
 void Body::ApplyForce(Vec3 force) { //acceleration due to the force
 	accel = force / mass;
 }
+
+// return the width (x) and height(y) of the texture parameter
+SDL_Point Body::getsize(SDL_Texture* texture)
+{
+	SDL_Point size;
+	SDL_QueryTexture(texture, NULL, NULL, &size.x, &size.y);
+	return size;
+}
+
 void Body::Update(float deltaTime){
 	if (is_moving == false) {
 		return;
