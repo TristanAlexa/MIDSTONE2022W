@@ -61,9 +61,9 @@ bool Scene1::OnCreate() {
 
 	// get player texture dimensions
 	playerWidth = player->getsize(playerTexture).x;
-	printf("playerTexture width: %d", playerWidth); 
+	printf("playerTexture width: %d\n", playerWidth); 
 	playerHeight = player->getsize(playerTexture).y;
-	printf("playerTexture height: %d", playerHeight);
+	printf("playerTexture height: %d\n", playerHeight);
 
 	IMG_Init(IMG_INIT_JPG);
 	SDL_Surface* floor1Image = IMG_Load("textures/Stone.jpg");
@@ -77,9 +77,8 @@ bool Scene1::OnCreate() {
 	// get stone floor object dimensions
 	floorWidth = floor1->getsize(floor1Texture).x;
 	floorHeight = floor1->getsize(floor1Texture).y;
-	printf("Floor Texture width: %d", floorWidth);
-	playerHeight = player->getsize(playerTexture).y;
-	printf("Floor Texture height: %d", floorHeight);
+	printf("Floor Texture width: %d\n", floorWidth);
+	printf("Floor Texture height: %d\n", floorHeight);
 
 	SDL_Surface* floor2Image = IMG_Load("textures/Stone.jpg");
 	SDL_Texture* floor2Texture = SDL_CreateTextureFromSurface(renderer, floor2Image);
