@@ -12,8 +12,8 @@
 using namespace MATH;
 class Scene1 : public Scene {
 private:
-	class SDL_Window *window;
-	class SDL_Renderer *renderer;
+	struct SDL_Window *window;
+	struct SDL_Renderer *renderer;
 	Matrix4 projectionMatrix;
 	class GameManager* game;
 	//Body *damagedealers
@@ -25,6 +25,8 @@ private:
 	// floor pointers and dimensions
 	class Body* floor1, * floor2, *rightwall, * leftwall;
 	int floorWidth, floorHeight;
+
+	
 	
 public:
 	Scene1(SDL_Window* sdlWindow_, GameManager* game_);
@@ -34,6 +36,7 @@ public:
 	void Update(const float time);
 	void Render();
 	void HandleEvents(const SDL_Event& sdlEvent);
+
 };
 
 #endif

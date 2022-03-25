@@ -120,6 +120,7 @@ void Scene1::OnDestroy() {
 
 void Scene1::Update(const float deltaTime) {
 	player->Update(deltaTime);
+	game->canEnterScene2 = false;
 	
 	if (CollisionManager::checkCollision(player, floor1) == true)
 	{
@@ -134,14 +135,9 @@ void Scene1::Update(const float deltaTime) {
 	Vec3 bottomRight(27.0f, 6.0f, 0.0f);
 	if (VMath::distance(player->getPos(), bottomRight) < 1.5f)
 	{
-		//create event for scene change
-		SDL_Event event;
-		SDL_memset(&event, 0, sizeof(event));
-		event.type = game->getChangeScene();
-		event.user.code = 1;
-		event.user.data1 = nullptr;
-		event.user.data2 = nullptr;
-		SDL_PushEvent(&event);
+		// set can switch scenes to true
+		game->canEnterScene2 = true;
+		
 	}
 }
 

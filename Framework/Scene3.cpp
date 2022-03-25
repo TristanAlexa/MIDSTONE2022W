@@ -1,4 +1,4 @@
-#include "Scene2.h"
+#include "Scene3.h"
 #include "Player.h"
 #include "Body.h"
 #include <SDL.h>
@@ -7,14 +7,13 @@
 #include "Debug.h"
 #include "VMath.h"
 
-Scene2::Scene2(SDL_Window* sdlWindow_, GameManager* game_)
+Scene3::Scene3(SDL_Window* sdlWindow_, GameManager* game_)
 {
-	// Render scene 2 window
-	Debug::Info("Created Scene2: ", __FILE__, __LINE__);
+	Debug::Info("Created Scene3: ", __FILE__, __LINE__);
 	window = sdlWindow_;
 	game = game_;
-	
-	//from scene 2 onwards, need this renderer to swtich scene
+
+	// Render scene 3 window
 	renderer = SDL_GetRenderer(window);
 	if (renderer == nullptr) {
 		printf("%s\n", SDL_GetError());
@@ -27,12 +26,12 @@ Scene2::Scene2(SDL_Window* sdlWindow_, GameManager* game_)
 	Timer::SetSingleEvent(5000, (void*)"Start");
 }
 
-Scene2::~Scene2()
+Scene3::~Scene3()
 {
 	delete player;
 }
 
-bool Scene2::OnCreate()
+bool Scene3::OnCreate()
 {
 	int w, h;
 	SDL_GetWindowSize(window, &w, &h);
@@ -55,23 +54,27 @@ bool Scene2::OnCreate()
 	return true;
 }
 
-void Scene2::OnDestroy()
+void Scene3::OnDestroy()
 {
 }
 
-void Scene2::Update(const float deltaTime)
+void Scene3::Update(const float deltaTime)
 {
 	player->Update(deltaTime);
+
+	// set other scene switch booleans to false;
 	game->canEnterScene2 = false;
+	game->canEnterScene3 = false;
+
 	// Checking when to change scene
 	Vec3 bottomRight(27.0f, 6.0f, 0.0f);
 	if (VMath::distance(player->getPos(), bottomRight) < 1.5f)
 	{
-		game->canEnterScene3 = true;
+		//game->canEnterScene4 = true;
 	}
 }
 
-void Scene2::HandleEvents(const SDL_Event& sdlEvent)
+void Scene3::HandleEvents(const SDL_Event& sdlEvent)
 {
 	//Handle player movement events
 	if (sdlEvent.type == SDL_EventType::SDL_KEYDOWN) {
@@ -106,10 +109,11 @@ void Scene2::HandleEvents(const SDL_Event& sdlEvent)
 	}
 }
 
-void Scene2::Render()
+
+void Scene3::Render()
 {
-	
-	SDL_SetRenderDrawColor(renderer, 112, 128, 144, 0); // drawing grey colour for background
+
+	SDL_SetRenderDrawColor(renderer, 200, 100, 100, 0); // red colour to know we are in scene 3
 	SDL_RenderClear(renderer);
 
 	SDL_Rect square;
@@ -132,5 +136,4 @@ void Scene2::Render()
 		SDL_RenderCopyEx(renderer, player->getTexture(), nullptr, &square, 0.0, nullptr, SDL_FLIP_HORIZONTAL);
 	}
 	SDL_RenderPresent(renderer);
-
 }

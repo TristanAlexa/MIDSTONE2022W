@@ -4,6 +4,7 @@
 #include "Scene0.h"
 #include "Scene1.h"
 #include "Scene2.h"
+#include "Scene3.h"
 #include <iostream>
 
 GameManager::GameManager() {
@@ -11,10 +12,9 @@ GameManager::GameManager() {
 	timer = nullptr;
 	isRunning = true;
 	currentScene = nullptr;
-	//changeSceneEventType = false;
-	//changeSceneEventType2 = false;
+	canEnterScene2 = false;
+	canEnterScene3 = false;
 }
-
 
 /// In this OnCreate() method, fuction, subroutine, whatever the word, 
 bool GameManager::OnCreate() {
@@ -48,60 +48,24 @@ bool GameManager::OnCreate() {
 		return false;
 	}
 
-	// //Scene 2 not being created multiple times when changeSceneEvent type is initialized to false
-	// //Gets created multiple times with the below *needed* line called. Therefore cannot register/create multiple events
-	changeSceneEventType = SDL_RegisterEvents(1); // create user defined events
-	if (changeSceneEventType == ((Uint32) - 1) ) {
-		OnDestroy();
-		return false;
-	}
-
-	/*if (changeSceneEventType2 == ((Uint32)-1)) {
-		OnDestroy();
-		return false;
-	}*/
-
 	return true;
 }
 
 /// Here's the whole game
 void GameManager::Run() {
-	SDL_Event sdlEvent;
+	
 	timer->Start();
 	while (isRunning) {
 
+		SDL_Event sdlEvent;
 		SDL_PumpEvents();
 
-		while (SDL_PollEvent(&sdlEvent)) {
+		while (SDL_PollEvent(&sdlEvent)) 
+		{
 			if (sdlEvent.type == SDL_EventType::SDL_QUIT)
 			{
 				isRunning = false;
 			}
-
-			//Scene 2 constantly being created after event type is called
-			else if (sdlEvent.type == changeSceneEventType)
-			{
-				// specific scene to scene switch
-				currentScene->OnDestroy();
-				delete currentScene;
-				currentScene = new Scene2(windowPtr->GetSDL_Window(), this);
-				if (!currentScene->OnCreate())
-				{
-					isRunning = false;
-				}
-			}
-
-			//else if (sdlEvent.type == changeSceneEventType2)
-			//{
-			//	// specific scene to scene switch
-			//	currentScene->OnDestroy();
-			//	delete currentScene;
-			//	currentScene = new Scene0(windowPtr->GetSDL_Window(), this);
-			//	if (!currentScene->OnCreate())
-			//	{
-			//		isRunning = false;
-			//	}
-			//}
 
 			else if (sdlEvent.type == SDL_EventType::SDL_KEYDOWN)
 			{
@@ -112,6 +76,31 @@ void GameManager::Run() {
 				else if (sdlEvent.key.keysym.scancode == SDL_SCANCODE_Q)
 				{
 					isRunning = false;
+				}
+				// switch scene on button press
+				else if (sdlEvent.key.keysym.scancode == SDL_SCANCODE_E)
+				{
+					if (canEnterScene2 && !canEnterScene3)
+					{
+						// specific scene to scene switch
+						currentScene->OnDestroy();
+						delete currentScene;
+						currentScene = new Scene2(windowPtr->GetSDL_Window(), this);
+						if (!currentScene->OnCreate())
+						{
+							isRunning = false;
+						}
+					}
+					else if (canEnterScene3 && !canEnterScene2)
+					{
+						currentScene->OnDestroy();
+						delete currentScene;
+						currentScene = new Scene3(windowPtr->GetSDL_Window(), this);
+						if (!currentScene->OnCreate())
+						{
+							isRunning = false;
+						}
+					}
 				}
 			}
 			currentScene->HandleEvents(sdlEvent);
