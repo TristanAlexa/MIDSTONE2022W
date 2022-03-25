@@ -33,6 +33,7 @@ Scene1::Scene1(SDL_Window* sdlWindow_, GameManager* game_){
 }
 
 Scene1::~Scene1(){
+	Debug::Info("Deleted Scene 1", __FILE__, __LINE__);
 	delete player;
 	delete floor1;
 	delete floor2;
@@ -114,7 +115,7 @@ bool Scene1::OnCreate() {
 }
 
 void Scene1::OnDestroy() {
-	
+	Debug::Info("Destroyed Scene 1", __FILE__, __LINE__);
 }
 
 void Scene1::Update(const float deltaTime) {

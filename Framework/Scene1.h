@@ -12,18 +12,18 @@
 using namespace MATH;
 class Scene1 : public Scene {
 private:
-	SDL_Window *window;
-	SDL_Renderer *renderer;
+	class SDL_Window *window;
+	class SDL_Renderer *renderer;
 	Matrix4 projectionMatrix;
-	GameManager* game;
+	class GameManager* game;
 	//Body *damagedealers
 	
 	// main player pointer and dimensions
-	Player* player;
+	class Player* player;
 	int playerWidth, playerHeight;
 
 	// floor pointers and dimensions
-	Body* floor1, * floor2, *rightwall, * leftwall;
+	class Body* floor1, * floor2, *rightwall, * leftwall;
 	int floorWidth, floorHeight;
 	
 public:

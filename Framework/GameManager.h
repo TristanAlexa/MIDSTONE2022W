@@ -17,7 +17,7 @@ private:
 	class Window *windowPtr;
 	class Timer *timer;
 	bool isRunning;
-	Scene *currentScene;
+	class Scene *currentScene;
 	Uint32 changeSceneEventType; //Scene 1 to 2 change
 
 	// //New user event because cannot register multiple evnts to changeSceneEventType;
