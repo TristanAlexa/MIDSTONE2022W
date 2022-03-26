@@ -10,10 +10,10 @@
 bool CollisionManager::checkCollision(Player* player, Body* collidedObject)
 {
 	// Sides of objects. A: player, B: walls
-	int leftA, leftB;
-	int rightA, rightB;
-	int topA, topB;
-	int bottomA, bottomB;
+	float leftA, leftB;
+	float rightA, rightB;
+	float topA, topB;
+	float bottomA, bottomB;
 
 	// Calculate player sides
 	leftA = player->getPos().x; 

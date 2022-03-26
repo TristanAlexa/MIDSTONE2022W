@@ -125,10 +125,12 @@ void Scene1::Update(const float deltaTime) {
 	if (CollisionManager::checkCollision(player, floor1) == true)
 	{
 		// stop the player from updating its position
+		//printf(" collision detected\n");
 	}
 	else if (CollisionManager::checkCollision(player, floor1) == false)
 	{
 		// move player normally
+		//printf("No collision detected\n");
 	}
 	
 	// Push change scene event to queue when player reaches right side of screen
@@ -137,7 +139,6 @@ void Scene1::Update(const float deltaTime) {
 	{
 		// set can switch scenes to true
 		game->canEnterScene2 = true;
-		
 	}
 }
 
