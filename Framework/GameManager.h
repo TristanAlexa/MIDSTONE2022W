@@ -19,22 +19,20 @@ private:
 	class Window *windowPtr;
 	class Timer *timer;
 	bool isRunning;
-	Scene *currentScene;
-	Uint32 changeSceneEventType; //Scene 1 to 2 change
-
-	// //New user event because cannot register multiple evnts to changeSceneEventType;
-	//Uint32 changeSceneEventType2; // Scene 2 to 3 change
+	class Scene *currentScene;
 
 public:
 	GameManager();
 	~GameManager();
 	bool OnCreate();
 	void OnDestroy();
-
-	Uint32 getChangeScene() { return changeSceneEventType; }
-	//Uint32 getChangeScene2() { return changeSceneEventType2; }
-	
 	void Run();
+	
+	bool canEnterScene2;
+	bool canEnterScene3;
+	
+	
+	
 };
 #endif
 

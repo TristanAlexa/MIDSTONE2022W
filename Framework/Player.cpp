@@ -24,12 +24,11 @@ Player::Player()
 	texture = NULL;
 }
 
-Player::Player(Vec3 pos_, Vec3 vel_, Vec3 accel_, float mass_)
+Player::Player(Vec3 pos_, Vec3 vel_, Vec3 accel_)
 {
 	pos = pos_;
 	vel = vel_;
 	accel = accel_;
-	mass = mass_;
 }
 
 Player::~Player()
@@ -75,9 +74,13 @@ void Player::Update(float deltaTime)
 		pos.y += vel.y * deltaTime;
 	}
 
-	if (pos.x + (vel.x * deltaTime) < 0.0f) {
+	if (pos.x + (vel.x * deltaTime) < 0.0f) 
+	{
 		pos.x = 0.0f;
-		
+	}
+	else if (pos.x + (vel.x * deltaTime) > 27.0f)
+	{
+		pos.x = 27.0f;
 	}
 	
 	else

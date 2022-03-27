@@ -33,6 +33,7 @@ Scene1::Scene1(SDL_Window* sdlWindow_, GameManager* game_){
 }
 
 Scene1::~Scene1(){
+	Debug::Info("Deleted Scene 1", __FILE__, __LINE__);
 	delete player;
 	delete floor1;
 	delete floor2;
@@ -114,33 +115,30 @@ bool Scene1::OnCreate() {
 }
 
 void Scene1::OnDestroy() {
-	
+	Debug::Info("Destroyed Scene 1", __FILE__, __LINE__);
 }
 
 void Scene1::Update(const float deltaTime) {
 	player->Update(deltaTime);
+	game->canEnterScene2 = false;
 	
 	if (CollisionManager::checkCollision(player, floor1) == true)
 	{
 		// stop the player from updating its position
+		//printf(" collision detected\n");
 	}
 	else if (CollisionManager::checkCollision(player, floor1) == false)
 	{
 		// move player normally
+		//printf("No collision detected\n");
 	}
 	
 	// Push change scene event to queue when player reaches right side of screen
 	Vec3 bottomRight(27.0f, 6.0f, 0.0f);
 	if (VMath::distance(player->getPos(), bottomRight) < 1.5f)
 	{
-		//create event for scene change
-		SDL_Event event;
-		SDL_memset(&event, 0, sizeof(event));
-		event.type = game->getChangeScene();
-		event.user.code = 1;
-		event.user.data1 = nullptr;
-		event.user.data2 = nullptr;
-		SDL_PushEvent(&event);
+		// set can switch scenes to true
+		game->canEnterScene2 = true;
 	}
 }
 

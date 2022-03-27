@@ -14,19 +14,17 @@ private:
 	Vec3 vel;
 	Vec3 accel;
 	Vec3 force;
-	// Vec3 size;
-
 	float gravity;
-	float mass;
-
-	float rotationZ;
-	float radius;
 
 	SDL_Surface* image;
 	SDL_Texture* texture;
 
 	bool is_moving;
 	bool is_grounded;
+
+	//variables for body class
+	//float rotationZ;
+	//float radius;
 
 	// Test Run **************************************
 	// 
@@ -59,7 +57,7 @@ private:
 
 public:
 	Player();
-	Player(Vec3 pos_, Vec3 vel_, Vec3 accel_, float mass_);
+	Player(Vec3 pos_, Vec3 vel_, Vec3 accel_);
 	~Player();
 
 	void isMoving(bool TorF) { is_moving = TorF; }
@@ -82,10 +80,10 @@ public:
 	void setVelocityY(float Vy) { vel.y = Vy; }
 	void setPosition(Vec3 pos_) { pos = pos_; }
 	Vec3 getAcceleration() { return accel; }
-	float getRadius() { return radius; }
-	float getMass() { return mass; }
-	float getRotationZ() { return rotationZ; }
-	inline void setMass(float mass_) { mass = mass_; }
+	//float getRadius() { return radius; }
+	//float getMass() { return mass; }
+	//float getRotationZ() { return rotationZ; }
+	//inline void setMass(float mass_) { mass = mass_; }
 	inline void setGravity(float gravity_) { gravity = gravity_; }
 
 	void setImage(SDL_Surface* image_) { image = image_; }
