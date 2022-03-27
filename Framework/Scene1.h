@@ -15,7 +15,7 @@ private:
 	SDL_Window *window;
 	SDL_Renderer *renderer;
 	Matrix4 projectionMatrix;
-	GameManager* game;
+	class GameManager* game;
 	//Body *damagedealers
 	
 	// main player pointer and dimensions

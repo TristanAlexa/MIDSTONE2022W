@@ -2,6 +2,8 @@
 #define GAMEMANAGER_H
 #include <SDL.h>
 #include "Scene.h"
+#include "StartScene.h"
+#include "EndScene.h"
 
 class GameManager {
 private:
