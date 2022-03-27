@@ -11,11 +11,12 @@
 
 EndScene::EndScene(SDL_Window* sdlWindow_, GameManager* game_) {
 
-	//Render Start scene window
+	//Render end scene window
 	Debug::Info("Created StartScene: ", __FILE__, __LINE__);
 	window = sdlWindow_;
 	game = game_;
-	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+
+	renderer = SDL_GetRenderer(window);
 	if (renderer == nullptr) {
 		printf("%s\n", SDL_GetError());
 	}

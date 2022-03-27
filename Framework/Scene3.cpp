@@ -70,7 +70,7 @@ void Scene3::Update(const float deltaTime)
 	Vec3 bottomRight(27.0f, 6.0f, 0.0f);
 	if (VMath::distance(player->getPos(), bottomRight) < 1.5f)
 	{
-		//game->canEnterScene4 = true;
+		game->canEnterEndScene = true;
 	}
 }
 

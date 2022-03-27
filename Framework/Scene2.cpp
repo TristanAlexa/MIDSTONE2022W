@@ -14,7 +14,6 @@ Scene2::Scene2(SDL_Window* sdlWindow_, GameManager* game_)
 	window = sdlWindow_;
 	game = game_;
 	
-	//from scene 2 onwards, need this renderer to swtich scene
 	renderer = SDL_GetRenderer(window);
 	if (renderer == nullptr) {
 		printf("%s\n", SDL_GetError());
@@ -29,6 +28,7 @@ Scene2::Scene2(SDL_Window* sdlWindow_, GameManager* game_)
 
 Scene2::~Scene2()
 {
+	Debug::Info("Deleted Scene 2", __FILE__, __LINE__);
 	delete player;
 }
 

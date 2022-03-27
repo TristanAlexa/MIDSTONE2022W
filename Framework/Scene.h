@@ -9,6 +9,7 @@ public:
 	virtual void Update(const float time) = 0;
 	virtual void Render() = 0;
 	virtual void HandleEvents(const SDL_Event& sdlEvent) = 0;
+	virtual ~Scene() {};
 };
 
 #endif

@@ -15,7 +15,8 @@ Scene1::Scene1(SDL_Window* sdlWindow_, GameManager* game_){
 	Debug::Info("Created Scene1: ", __FILE__, __LINE__);
 	window = sdlWindow_;
 	game = game_;
-	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+
+	renderer = SDL_GetRenderer(window);
 	if (renderer == nullptr) {
 		printf("%s\n", SDL_GetError());
 	}

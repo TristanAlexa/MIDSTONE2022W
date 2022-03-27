@@ -106,7 +106,10 @@ void StartScene::OnDestroy() {
 
 }
 
-void StartScene::Update(const float deltaTime) {
+void StartScene::Update(const float deltaTime) 
+{
+	// allow player to start game
+	game->canEnterScene1 = true;
 	
 }
 

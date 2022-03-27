@@ -27,9 +27,13 @@ public:
 	bool OnCreate();
 	void OnDestroy();
 	void Run();
-	
+
+	// checks if player can switch scenes
+	bool canEnterScene1;
 	bool canEnterScene2;
 	bool canEnterScene3;
+	bool canEnterEndScene;
+	
 	
 	
 	

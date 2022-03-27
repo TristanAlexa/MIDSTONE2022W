@@ -12,8 +12,10 @@ GameManager::GameManager() {
 	timer = nullptr;
 	isRunning = true;
 	currentScene = nullptr;
+	canEnterScene1 = false;
 	canEnterScene2 = false;
 	canEnterScene3 = false;
+	canEnterEndScene = false;
 }
 
 /// In this OnCreate() method, fuction, subroutine, whatever the word, 
@@ -37,7 +39,7 @@ bool GameManager::OnCreate() {
 		return false;
 	}
 
-	currentScene = new Scene1(windowPtr->GetSDL_Window(), this);
+	currentScene = new StartScene(windowPtr->GetSDL_Window(), this);
 	if (currentScene == nullptr) {
 		OnDestroy();
 		return false;
@@ -60,7 +62,7 @@ void GameManager::Run() {
 		SDL_Event sdlEvent;
 		SDL_PumpEvents();
 
-		while (SDL_PollEvent(&sdlEvent)) 
+		while (SDL_PollEvent(&sdlEvent) != 0) 
 		{
 			if (sdlEvent.type == SDL_EventType::SDL_QUIT)
 			{
@@ -77,12 +79,27 @@ void GameManager::Run() {
 				{
 					isRunning = false;
 				}
+				// start game button
+				else if (sdlEvent.key.keysym.scancode == SDL_SCANCODE_1)
+				{
+					// switch to scene 1
+					if (canEnterScene1)
+					{
+						currentScene->OnDestroy();
+						delete currentScene;
+						currentScene = new Scene1(windowPtr->GetSDL_Window(), this);
+						if (!currentScene->OnCreate())
+						{
+							isRunning = false;
+						}
+					}
+				}
 				// switch scene on button press
 				else if (sdlEvent.key.keysym.scancode == SDL_SCANCODE_E)
 				{
 					if (canEnterScene2 && !canEnterScene3)
 					{
-						// specific scene to scene switch
+						// Switch to scene 2
 						currentScene->OnDestroy();
 						delete currentScene;
 						currentScene = new Scene2(windowPtr->GetSDL_Window(), this);
@@ -93,9 +110,21 @@ void GameManager::Run() {
 					}
 					else if (canEnterScene3 && !canEnterScene2)
 					{
+						// switch to scene 3
 						currentScene->OnDestroy();
 						delete currentScene;
 						currentScene = new Scene3(windowPtr->GetSDL_Window(), this);
+						if (!currentScene->OnCreate())
+						{
+							isRunning = false;
+						}
+					}
+					else if (canEnterEndScene && !canEnterScene3 && !canEnterScene2)
+					{
+						// switch to scene endScene
+						currentScene->OnDestroy();
+						delete currentScene;
+						currentScene = new EndScene(windowPtr->GetSDL_Window(), this);
 						if (!currentScene->OnCreate())
 						{
 							isRunning = false;
