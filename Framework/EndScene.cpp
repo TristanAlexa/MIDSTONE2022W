@@ -12,7 +12,7 @@
 EndScene::EndScene(SDL_Window* sdlWindow_, GameManager* game_) {
 
 	//Render end scene window
-	Debug::Info("Created StartScene: ", __FILE__, __LINE__);
+	Debug::Info("Created EndScene: ", __FILE__, __LINE__);
 	window = sdlWindow_;
 	game = game_;
 
@@ -87,7 +87,8 @@ void EndScene::OnDestroy() {
 }
 
 void EndScene::Update(const float deltaTime) {
-
+	// stop's multiple creations of end scene from automatic scene switch
+	game->canEnterEndScene = false;
 }
 
 void EndScene::HandleEvents(const SDL_Event& sdlEvent) {

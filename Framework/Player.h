@@ -16,11 +16,14 @@ private:
 	Vec3 force;
 	float gravity;
 
+	int health;
+
 	SDL_Surface* image;
 	SDL_Texture* texture;
 
 	bool is_moving;
 	bool is_grounded;
+	bool is_dead;
 
 	//variables for body class
 	//float rotationZ;
@@ -63,6 +66,8 @@ public:
 	void isMoving(bool TorF) { is_moving = TorF; }
 	void isGrounded(bool TorF) { is_grounded = TorF; }
 	bool isGrounded();
+	bool isDead();
+	void TakeDamage(int damage);
 	void Update(float deltaTime);
 
 	//Force
@@ -80,6 +85,7 @@ public:
 	void setVelocityY(float Vy) { vel.y = Vy; }
 	void setPosition(Vec3 pos_) { pos = pos_; }
 	Vec3 getAcceleration() { return accel; }
+	void setHealth(int health_) { health = health_; }
 	//float getRadius() { return radius; }
 	//float getMass() { return mass; }
 	//float getRotationZ() { return rotationZ; }

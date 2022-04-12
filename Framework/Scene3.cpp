@@ -19,9 +19,10 @@ Scene3::Scene3(SDL_Window* sdlWindow_, GameManager* game_)
 		printf("%s\n", SDL_GetError());
 	}
 
-	//Create player object, set initial pos
+	//Create player object, set initial pos and health
 	player = new Player();
-	player->setPosition(Vec3(3.0f, 5.0f, 0.0f));
+	player->setPosition(Vec3(5.0f, 5.0f, 0.0f));
+	player->setHealth(1);
 
 	Timer::SetSingleEvent(5000, (void*)"Start");
 }
@@ -65,12 +66,27 @@ void Scene3::Update(const float deltaTime)
 	// set other scene switch booleans to false;
 	game->canEnterScene2 = false;
 	game->canEnterScene3 = false;
+	game->canEnterEndScene = false;
 
 	// Checking when to change scene
 	Vec3 bottomRight(27.0f, 6.0f, 0.0f);
 	if (VMath::distance(player->getPos(), bottomRight) < 1.5f)
 	{
 		game->canEnterEndScene = true;
+	}
+
+	// if player is dead call end scene
+	if (player->isDead())
+	{
+		game->canEnterEndScene = true;
+		//create event for automatic scene switch
+		SDL_Event event;
+		SDL_memset(&event, 0, sizeof(event));
+		event.type = game->getGameOverEvent();
+		event.user.code = 1;
+		event.user.data1 = nullptr;
+		event.user.data2 = nullptr;
+		SDL_PushEvent(&event);
 	}
 }
 

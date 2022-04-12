@@ -50,6 +50,14 @@ bool GameManager::OnCreate() {
 		return false;
 	}
 
+	// create user defined event
+	gameOverEventType = SDL_RegisterEvents(1);
+	if (gameOverEventType == ((Uint32)-1))
+	{
+		OnDestroy();
+		return false;
+	}
+
 	return true;
 }
 
@@ -62,13 +70,23 @@ void GameManager::Run() {
 		SDL_Event sdlEvent;
 		SDL_PumpEvents();
 
-		while (SDL_PollEvent(&sdlEvent) != 0) 
+		while (SDL_PollEvent(&sdlEvent)) 
 		{
 			if (sdlEvent.type == SDL_EventType::SDL_QUIT)
 			{
 				isRunning = false;
 			}
-
+			else if (sdlEvent.type == gameOverEventType && canEnterEndScene)
+			{
+				// switch to endScene
+				currentScene->OnDestroy();
+				delete currentScene;
+				currentScene = new EndScene(windowPtr->GetSDL_Window(), this);
+				if (!currentScene->OnCreate())
+				{
+					isRunning = false;
+				}
+			}
 			else if (sdlEvent.type == SDL_EventType::SDL_KEYDOWN)
 			{
 				if (sdlEvent.key.keysym.scancode == SDL_SCANCODE_ESCAPE)

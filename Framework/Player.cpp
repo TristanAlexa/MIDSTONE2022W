@@ -15,10 +15,13 @@ Player::Player()
 	accel.y = -GRAVITY;
 	accel.z = 0.0f;
 
+	health = 0;
+
 	gravity = -GRAVITY;
 
 	is_moving = false;
 	is_grounded = false;
+	is_dead = false;
 
 	image = NULL;
 	texture = NULL;
@@ -54,6 +57,25 @@ bool Player::isGrounded()
 	}
 }
 
+void Player::TakeDamage(int damage)
+{
+	// apply damage to the character and take away health 
+	health = health - damage;
+}
+
+bool Player::isDead()
+{
+	// return true if player health is equal to 0
+	if (health > 0)
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+}
+
 void Player::Update(float deltaTime)
 {
 	//Update position due to acceleration forces
@@ -77,6 +99,8 @@ void Player::Update(float deltaTime)
 	if (pos.x + (vel.x * deltaTime) < 0.0f) 
 	{
 		pos.x = 0.0f;
+		// testing damage and death function on left most wall
+		TakeDamage(1);
 	}
 	else if (pos.x + (vel.x * deltaTime) > 27.0f)
 	{

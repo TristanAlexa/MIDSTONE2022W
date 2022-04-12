@@ -20,6 +20,7 @@ private:
 	class Timer *timer;
 	bool isRunning;
 	class Scene *currentScene;
+	Uint32 gameOverEventType; // called when player is dead
 
 public:
 	GameManager();
@@ -27,6 +28,8 @@ public:
 	bool OnCreate();
 	void OnDestroy();
 	void Run();
+	
+	Uint32 getGameOverEvent() { return gameOverEventType; }
 
 	// checks if player can switch scenes
 	bool canEnterScene1;

@@ -21,9 +21,10 @@ Scene1::Scene1(SDL_Window* sdlWindow_, GameManager* game_){
 		printf("%s\n", SDL_GetError());
 	}
 
-	//Create player object, set initial pos
+	//Create player object, set initial pos and health
 	player = new Player();
 	player->setPosition(Vec3(5.0f, 5.0f, 0.0f));
+	player->setHealth(int (1));
 	
 	floor1 = new Body(Vec3(4.0f, 1.25f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), 1.0f);
 	floor2 = new Body(Vec3(15.0f, 1.25f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), 1.0f);
@@ -122,6 +123,7 @@ void Scene1::OnDestroy() {
 void Scene1::Update(const float deltaTime) {
 	player->Update(deltaTime);
 	game->canEnterScene2 = false;
+	game->canEnterEndScene = false;
 	
 	if (CollisionManager::checkCollision(player, floor1) == true)
 	{
@@ -133,6 +135,13 @@ void Scene1::Update(const float deltaTime) {
 		// move player normally
 		//printf("No collision detected\n");
 	}
+
+	//if (CollisionManager::checkCollision(player, damageDealer) == true)
+	//{
+	//	// instantly kill the player
+	//	player->TakeDamage(1)
+	//}
+	
 	
 	// Push change scene event to queue when player reaches right side of screen
 	Vec3 bottomRight(27.0f, 6.0f, 0.0f);
@@ -140,6 +149,20 @@ void Scene1::Update(const float deltaTime) {
 	{
 		// set can switch scenes to true
 		game->canEnterScene2 = true;
+	}
+
+	// if player is dead call end scene
+	if (player->isDead())
+	{
+		game->canEnterEndScene = true;
+		//create event for automatic scene switch
+		SDL_Event event;
+		SDL_memset(&event, 0, sizeof(event));
+		event.type = game->getGameOverEvent();
+		event.user.code = 1;
+		event.user.data1 = nullptr;
+		event.user.data2 = nullptr;
+		SDL_PushEvent(&event);
 	}
 }
 
