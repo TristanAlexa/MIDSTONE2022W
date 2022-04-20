@@ -49,6 +49,7 @@ public:
 	void Update(float deltaTime);
 	void ApplyForce(Vec3 force);
 	Vec3 getPos() { return pos; }
+	void setPos(Vec3 pos_) { pos = pos_; }
 	void isMoving(bool TorF) { is_moving = TorF; }
 	void setImage(SDL_Surface *image_) { image = image_; }
 	SDL_Surface* getImage() { return image; }

@@ -30,7 +30,8 @@ Scene1::Scene1(SDL_Window* sdlWindow_, GameManager* game_){
 	floor2 = new Body(Vec3(15.0f, 1.25f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), 1.0f);
 	leftwall = new Body(Vec3(0.0f, 7.5f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), 1.0f);
 	rightwall = new Body(Vec3(26.0f, 4.5f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), 1.0f);
-
+	progressionDoor = new Body();
+	progressionDoor->setPos(Vec3(27.75f, 9.2f, 0.0f));
 	Timer::SetSingleEvent(5000, (void*)"Start");
 }
 
@@ -41,6 +42,7 @@ Scene1::~Scene1(){
 	delete floor2;
 	delete leftwall;
 	delete rightwall;
+	delete progressionDoor;
 }
 
 bool Scene1::OnCreate() {
@@ -54,6 +56,7 @@ bool Scene1::OnCreate() {
 	//Turn on SDL Imaging subsystem and attach images to objects
 	IMG_Init(IMG_INIT_PNG);
 
+	//new player image
 	SDL_Surface *playerImage = IMG_Load("textures/playerSprite.png");
 	SDL_Texture* playerTexture = SDL_CreateTextureFromSurface(renderer, playerImage);
 	if(playerImage == nullptr) {
@@ -67,6 +70,17 @@ bool Scene1::OnCreate() {
 	printf("playerTexture width: %d\n", playerWidth); 
 	playerHeight = player->getsize(playerTexture).y;
 	printf("playerTexture height: %d\n", playerHeight);
+
+	//add image to the door object
+	IMG_Init(IMG_INIT_JPG);
+	SDL_Surface* doorImage = IMG_Load("textures/door.jpg");
+	SDL_Texture* doorTexture = SDL_CreateTextureFromSurface(renderer, doorImage);
+	if (doorImage == nullptr) {
+		printf("cant open textures/door.jpg\n");
+		return false;
+	}
+	progressionDoor->setTexture(doorTexture);
+
 
 	IMG_Init(IMG_INIT_JPG);
 	SDL_Surface* floor1Image = IMG_Load("textures/Stone.jpg");
@@ -112,6 +126,7 @@ bool Scene1::OnCreate() {
 	SDL_FreeSurface(floor2Image);
 	SDL_FreeSurface(leftwallImage);
 	SDL_FreeSurface(rightwallImage);
+	SDL_FreeSurface(doorImage);
 
 	return true;
 }
@@ -240,7 +255,18 @@ void Scene1::Render() {
 	square.y = static_cast<int>(screenCoords.y);
 	square.w = w / 3;
 	square.h = h / 1.5;
+
 	SDL_RenderCopyEx(renderer, rightwall->getTexture(), nullptr, &square, 0.0, nullptr, SDL_FLIP_NONE);
+
+	//Draw the door and modify its size
+	screenCoords = projectionMatrix * progressionDoor->getPos();
+	SDL_QueryTexture(progressionDoor->getTexture(), nullptr, nullptr, &w, &h);
+	square.x = static_cast<int>(screenCoords.x);
+	square.y = static_cast<int>(screenCoords.y);
+	square.w = w;
+	square.h = h;
+
+	SDL_RenderCopyEx(renderer, progressionDoor->getTexture(), nullptr, &square, 0.0, nullptr, SDL_FLIP_NONE);
 
 	//Draw the player in its given position and modify its size
 	screenCoords = projectionMatrix * player->getPos();
@@ -250,6 +276,7 @@ void Scene1::Render() {
 	square.w = w/2;
 	square.h = h/2;
 
+
 	//Direction of movement = direction of sprite
 	if (player->getVelocity().x >= 0.0f) {
 		SDL_RenderCopyEx(renderer, player->getTexture(), nullptr, &square, 0.0, nullptr, SDL_FLIP_NONE);
@@ -257,6 +284,7 @@ void Scene1::Render() {
 	else {
 		SDL_RenderCopyEx(renderer, player->getTexture(), nullptr, &square, 0.0, nullptr, SDL_FLIP_HORIZONTAL);
 	}
+
 	SDL_RenderPresent(renderer);
 
 }

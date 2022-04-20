@@ -16,9 +16,11 @@ class Scene3 : public Scene
 	struct SDL_Window* window;
 	struct SDL_Renderer* renderer;
 	Matrix4 projectionMatrix;
-	GameManager* game; 
+	class GameManager* game; 
 
 	class Player* player;
+	// door to next scene
+	class Body* progressionDoor;
 
 public:
 	Scene3(SDL_Window* sdlWindow_, GameManager* game_);

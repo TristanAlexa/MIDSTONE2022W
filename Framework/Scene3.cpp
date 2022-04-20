@@ -24,12 +24,17 @@ Scene3::Scene3(SDL_Window* sdlWindow_, GameManager* game_)
 	player->setPosition(Vec3(5.0f, 5.0f, 0.0f));
 	player->setHealth(1);
 
+	//create door object and set its position
+	progressionDoor = new Body();
+	progressionDoor->setPos(Vec3(27.75f, 6.2f, 0.0f));
+
 	Timer::SetSingleEvent(5000, (void*)"Start");
 }
 
 Scene3::~Scene3()
 {
 	delete player;
+	delete progressionDoor;
 }
 
 bool Scene3::OnCreate()
@@ -50,7 +55,19 @@ bool Scene3::OnCreate()
 		return false;
 	}
 	player->setTexture(playerTexture);
+
+	//add image to the door object
+	IMG_Init(IMG_INIT_JPG);
+	SDL_Surface* doorImage = IMG_Load("textures/door.jpg");
+	SDL_Texture* doorTexture = SDL_CreateTextureFromSurface(renderer, doorImage);
+	if (doorImage == nullptr) {
+		printf("cant open textures/door.jpg\n");
+		return false;
+	}
+	progressionDoor->setTexture(doorTexture);
+
 	SDL_FreeSurface(playerImage);
+	SDL_FreeSurface(doorImage);
 
 	return true;
 }
@@ -135,6 +152,16 @@ void Scene3::Render()
 	SDL_Rect square;
 	Vec3 screenCoords;
 	int w, h;
+
+	//Draw the door and modify its size
+	screenCoords = projectionMatrix * progressionDoor->getPos();
+	SDL_QueryTexture(progressionDoor->getTexture(), nullptr, nullptr, &w, &h);
+	square.x = static_cast<int>(screenCoords.x);
+	square.y = static_cast<int>(screenCoords.y);
+	square.w = w;
+	square.h = h;
+
+	SDL_RenderCopyEx(renderer, progressionDoor->getTexture(), nullptr, &square, 0.0, nullptr, SDL_FLIP_NONE);
 
 	//Draw the player in its given position and modify its size
 	screenCoords = projectionMatrix * player->getPos();

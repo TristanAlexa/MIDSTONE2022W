@@ -89,6 +89,7 @@ void EndScene::OnDestroy() {
 void EndScene::Update(const float deltaTime) {
 	// stop's multiple creations of end scene from automatic scene switch
 	game->canEnterEndScene = false;
+	game->canEnterScene1 = true;
 }
 
 void EndScene::HandleEvents(const SDL_Event& sdlEvent) {

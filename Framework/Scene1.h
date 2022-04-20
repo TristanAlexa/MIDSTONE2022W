@@ -15,6 +15,7 @@ private:
 	struct SDL_Window *window;
 	struct SDL_Renderer *renderer;
 	Matrix4 projectionMatrix;
+	Matrix4 invProjectionMatrix;
 	class GameManager* game;
 	//Body *damagedealers
 	
@@ -26,6 +27,8 @@ private:
 	class Body* floor1, * floor2, *rightwall, * leftwall;
 	int floorWidth, floorHeight;
 
+	// door to next scene
+	class Body* progressionDoor;
 	
 	
 public:

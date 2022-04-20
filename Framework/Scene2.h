@@ -13,12 +13,13 @@ using namespace MATH;
 class Scene2 : public Scene
 {
 private:
-	SDL_Window* window;
-	SDL_Renderer* renderer;
-	Matrix4 projectionMatrix;
-	GameManager* game;
+	struct SDL_Window* window;
+	struct SDL_Renderer* renderer;
+	class Matrix4 projectionMatrix;
+	class GameManager* game;
 
-	Player* player;
+	class Player* player;
+	class Body* progressionDoor;  // door to next scene
 
 public:
 	Scene2(SDL_Window* sdlWindow_, GameManager* game_);
