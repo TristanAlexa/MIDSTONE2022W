@@ -69,6 +69,9 @@
     <ClCompile Include="EndScene.cpp">
       <Filter>Source Files\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Scene3.cpp">
+      <Filter>Source Files\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Body.h">
@@ -132,6 +135,9 @@
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="EndScene.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene3.h">
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
