@@ -85,10 +85,10 @@ bool StartScene::OnCreate() {
 	}
 	davidValente->setTexture(davidValenteTexture);
 
-	SDL_Surface* gameControlsImage = IMG_Load("textures/GameControls.png");
+	SDL_Surface* gameControlsImage = IMG_Load("textures/EditedGameControls.jpg");
 	SDL_Texture* gameControlsTexture = SDL_CreateTextureFromSurface(renderer, gameControlsImage);
 	if (gameControlsImage == nullptr) {
-		printf("cant open textures/GameControls.png\n");
+		printf("cant open textures/EditedGameControls.jpg\n");
 		return false;
 	}
 	gameControls->setTexture(gameControlsTexture);

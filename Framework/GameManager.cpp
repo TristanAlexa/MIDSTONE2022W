@@ -93,10 +93,11 @@ void GameManager::Run() {
 				{
 					isRunning = false;
 				}
+				/*
 				else if (sdlEvent.key.keysym.scancode == SDL_SCANCODE_Q)
 				{
 					isRunning = false;
-				}
+				}*/
 				// start game button
 				else if (sdlEvent.key.keysym.scancode == SDL_SCANCODE_1)
 				{
