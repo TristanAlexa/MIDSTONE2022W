@@ -24,7 +24,7 @@ StartScene::StartScene(SDL_Window* sdlWindow_, GameManager* game_) {
 	tristianGoode = new Body(Vec3(-4.0f, 13.00f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), 1.0f);
 	nikkiLiu = new Body(Vec3(-4.0f, 11.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), 1.0f);
 	davidValente = new Body(Vec3(-4.0f, 9.00f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), 1.0f);
-	gameControls = new Body(Vec3(-4.0f, 6.00f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), 1.0f);
+	gameControls = new Body(Vec3(3.0f, 6.00f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), 1.0f);
 
 	Timer::SetSingleEvent(5000, (void*)"Start");
 }
