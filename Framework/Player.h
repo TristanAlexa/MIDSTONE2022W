@@ -21,7 +21,7 @@ private:
 	SDL_Surface* image;
 	SDL_Texture* texture;
 
-	bool is_moving;
+	//bool is_moving;
 	bool is_grounded;
 	bool is_dead;
 
@@ -63,8 +63,8 @@ public:
 	Player(Vec3 pos_, Vec3 vel_, Vec3 accel_);
 	~Player();
 
-	void isMoving(bool TorF) { is_moving = TorF; }
-	void isGrounded(bool TorF) { is_grounded = TorF; }
+	//void isMoving(bool TorF) { is_moving = TorF; }
+	//void isGrounded(bool TorF) { is_grounded = TorF; }
 	bool isGrounded();
 	bool isDead();
 	void TakeDamage(int damage);
