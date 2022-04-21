@@ -24,7 +24,8 @@ StartScene::StartScene(SDL_Window* sdlWindow_, GameManager* game_) {
 	tristianGoode = new Body(Vec3(-4.0f, 13.00f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), 1.0f);
 	nikkiLiu = new Body(Vec3(-4.0f, 11.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), 1.0f);
 	davidValente = new Body(Vec3(-4.0f, 9.00f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), 1.0f);
-	gameControls = new Body(Vec3(-4.0f, 6.00f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), 1.0f);
+	spy = new Body(Vec3(2.0f, 12.00f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), 1.0f);
+	gameControls = new Body(Vec3(4.0f, 6.00f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), 1.0f);
 
 	Timer::SetSingleEvent(5000, (void*)"Start");
 }
@@ -34,6 +35,7 @@ StartScene::~StartScene() {
 	delete tristianGoode;
 	delete nikkiLiu;
 	delete davidValente;
+	delete spy;
 	delete gameControls;
 }
 
@@ -85,6 +87,14 @@ bool StartScene::OnCreate() {
 	}
 	davidValente->setTexture(davidValenteTexture);
 
+	SDL_Surface* spyImage = IMG_Load("textures/spygreycoatresized.png");
+	SDL_Texture* spyTexture = SDL_CreateTextureFromSurface(renderer, spyImage);
+	if (spyImage == nullptr) {
+		printf("cant open textures/spygreycoatresized.png\n");
+		return false;
+	}
+	spy->setTexture(spyTexture);
+
 	SDL_Surface* gameControlsImage = IMG_Load("textures/EditedGameControls.jpg");
 	SDL_Texture* gameControlsTexture = SDL_CreateTextureFromSurface(renderer, gameControlsImage);
 	if (gameControlsImage == nullptr) {
@@ -97,6 +107,7 @@ bool StartScene::OnCreate() {
 	SDL_FreeSurface(trisitanGoodeImage);
 	SDL_FreeSurface(nikkiLiuImage);
 	SDL_FreeSurface(davidValenteImage);
+	SDL_FreeSurface(spyImage);
 	SDL_FreeSurface(gameControlsImage);
 
 	return true;
@@ -158,6 +169,14 @@ void StartScene::Render() {
 	square.w = w / 2;
 	square.h = h / 3;
 	SDL_RenderCopyEx(renderer, davidValente->getTexture(), nullptr, &square, 0.0, nullptr, SDL_FLIP_NONE);
+
+	screenCoords = projectionMatrix * spy->getPos();
+	SDL_QueryTexture(spy->getTexture(), nullptr, nullptr, &w, &h);
+	square.x = static_cast<int>(screenCoords.x);
+	square.y = static_cast<int>(screenCoords.y);
+	square.w = w / 2;
+	square.h = h / 3;
+	SDL_RenderCopyEx(renderer, spy->getTexture(), nullptr, &square, 0.0, nullptr, SDL_FLIP_NONE);
 
 	screenCoords = projectionMatrix * gameControls->getPos();
 	SDL_QueryTexture(gameControls->getTexture(), nullptr, nullptr, &w, &h);

@@ -18,7 +18,7 @@ private:
 	class GameManager *game;
 
 	// title and names dimensions
-	Body* spyTrainer, * tristianGoode, * nikkiLiu, * davidValente, * gameControls;
+	Body* spyTrainer, * tristianGoode, * nikkiLiu, * davidValente, * gameControls, *spy;
 	int textWidth, textHeight;
 
 public:

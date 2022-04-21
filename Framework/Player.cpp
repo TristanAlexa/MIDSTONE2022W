@@ -47,7 +47,7 @@ SDL_Point Player::getsize(SDL_Texture* texture)
 
 bool Player::isGrounded()
 {
-	if (pos.y <= 5.0f) {
+	if (pos.y <= 8.0f) {
 		is_grounded = true;
 		return true;
 	}
@@ -82,9 +82,9 @@ void Player::Update(float deltaTime)
 	vel.y += accel.y * deltaTime;
 	//wall and floor collisions to test player movement
 	// if would collide, then stop, if wouldn't collide, update normally
-	if (pos.y + (vel.y * deltaTime) < 5.0f)
+	if (pos.y + (vel.y * deltaTime) < 8.0f)
 	{
-		pos.y = 5.0f;
+		pos.y = 8.0f;
 		
 	}
 	else if (pos.y + (vel.y * deltaTime) > 15.0f)

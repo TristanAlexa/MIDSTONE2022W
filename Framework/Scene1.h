@@ -24,12 +24,11 @@ private:
 	int playerWidth, playerHeight;
 
 	// floor pointers and dimensions
-	class Body* floor1, * floor2, *rightwall, * leftwall;
+	class Body* floor1, *floor2, *rightwall, *leftwall, *ceiling, *hidingspy;
 	int floorWidth, floorHeight;
 
 	// door to next scene
 	class Body* progressionDoor;
-	
 	
 public:
 	Scene1(SDL_Window* sdlWindow_, GameManager* game_);

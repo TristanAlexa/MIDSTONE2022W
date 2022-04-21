@@ -8,7 +8,6 @@
 #include "VMath.h"
 #include "CollisionManager.h"
 
-
 Scene1::Scene1(SDL_Window* sdlWindow_, GameManager* game_){
 
 	//Render scene 1 window
@@ -23,13 +22,15 @@ Scene1::Scene1(SDL_Window* sdlWindow_, GameManager* game_){
 
 	//Create player object, set initial pos and health
 	player = new Player();
-	player->setPosition(Vec3(5.0f, 5.0f, 0.0f));
+	player->setPosition(Vec3(5.0f, 8.0f, 0.0f));
 	player->setHealth(int (1));
 	
 	floor1 = new Body(Vec3(4.0f, 1.25f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), 1.0f);
-	floor2 = new Body(Vec3(15.0f, 1.25f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), 1.0f);
-	leftwall = new Body(Vec3(0.0f, 7.5f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), 1.0f);
+	floor2 = new Body(Vec3(11.0f, 1.25f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), 1.0f);
+	leftwall = new Body(Vec3(0.0f, 5.5f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), 1.0f);
 	rightwall = new Body(Vec3(26.0f, 4.5f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), 1.0f);
+	ceiling = new Body(Vec3(0.0f, 16.5f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), 1.0f);
+	hidingspy = new Body(Vec3(0.0f, 7.5f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), 1.0f);
 	progressionDoor = new Body();
 	progressionDoor->setPos(Vec3(27.75f, 9.2f, 0.0f));
 	Timer::SetSingleEvent(5000, (void*)"Start");
@@ -42,7 +43,9 @@ Scene1::~Scene1(){
 	delete floor2;
 	delete leftwall;
 	delete rightwall;
+	delete ceiling;
 	delete progressionDoor;
+	delete hidingspy;
 }
 
 bool Scene1::OnCreate() {
@@ -57,10 +60,10 @@ bool Scene1::OnCreate() {
 	IMG_Init(IMG_INIT_PNG);
 
 	//new player image
-	SDL_Surface *playerImage = IMG_Load("textures/playerSprite.png");
+	SDL_Surface *playerImage = IMG_Load("textures/spygreycoatresized.png");
 	SDL_Texture* playerTexture = SDL_CreateTextureFromSurface(renderer, playerImage);
 	if(playerImage == nullptr) {
-		printf("cant open textures/playerSprite.png\n");
+		printf("cant open textures/spygreycoatresized.png\n");
 		return false;
 	}
 	player->setTexture(playerTexture);
@@ -80,7 +83,6 @@ bool Scene1::OnCreate() {
 		return false;
 	}
 	progressionDoor->setTexture(doorTexture);
-
 
 	IMG_Init(IMG_INIT_JPG);
 	SDL_Surface* floor1Image = IMG_Load("textures/Stone.jpg");
@@ -121,12 +123,30 @@ bool Scene1::OnCreate() {
 	}
 	rightwall->setTexture(rightwallTexture);
 
+	SDL_Surface* ceilingImage = IMG_Load("textures/Stone.jpg");
+	SDL_Texture* ceilingTexture = SDL_CreateTextureFromSurface(renderer, ceilingImage);
+	if (ceilingImage == nullptr) {
+		printf("cant open textures/Stone.jpg\n");
+		return false;
+	}
+	ceiling->setTexture(ceilingTexture);
+
+	SDL_Surface* hidingspyImage = IMG_Load("textures/orangespyknife.jpg");
+	SDL_Texture* hidingspyTexture = SDL_CreateTextureFromSurface(renderer, hidingspyImage);
+	if (hidingspyImage == nullptr) {
+		printf("cant open textures/Stone.jpg\n");
+		return false;
+	}
+	hidingspy->setTexture(hidingspyTexture);
+
 	SDL_FreeSurface(playerImage);
 	SDL_FreeSurface(floor1Image);
 	SDL_FreeSurface(floor2Image);
 	SDL_FreeSurface(leftwallImage);
 	SDL_FreeSurface(rightwallImage);
+	SDL_FreeSurface(ceilingImage);
 	SDL_FreeSurface(doorImage);
+	SDL_FreeSurface(hidingspyImage);
 
 	return true;
 }
@@ -159,7 +179,7 @@ void Scene1::Update(const float deltaTime) {
 	
 	
 	// Push change scene event to queue when player reaches right side of screen
-	Vec3 bottomRight(27.0f, 6.0f, 0.0f);
+	Vec3 bottomRight(27.0f, 8.0f, 0.0f);
 	if (VMath::distance(player->getPos(), bottomRight) < 1.5f)
 	{
 		// set can switch scenes to true
@@ -224,7 +244,7 @@ void Scene1::Render() {
 	Vec3 screenCoords;
 	int w, h;
 
-	// Draw the stone floor, left & right wall
+	// Draw the stone floor, left, right wall & ceiling
 	screenCoords = projectionMatrix * floor1->getPos();
 	SDL_QueryTexture(floor1->getTexture(), nullptr, nullptr, &w, &h);
 	square.x = static_cast<int>(screenCoords.x);
@@ -237,7 +257,7 @@ void Scene1::Render() {
 	SDL_QueryTexture(floor2->getTexture(), nullptr, nullptr, &w, &h);
 	square.x = static_cast<int>(screenCoords.x);
 	square.y = static_cast<int>(screenCoords.y);
-	square.w = w / 2;
+	square.w = w * 1.2;
 	square.h = h / 3;
 	SDL_RenderCopyEx(renderer, floor2->getTexture(), nullptr, &square, 0.0, nullptr, SDL_FLIP_NONE);
 
@@ -246,7 +266,7 @@ void Scene1::Render() {
 	square.x = static_cast<int>(screenCoords.x);
 	square.y = static_cast<int>(screenCoords.y);
 	square.w = w / 3;
-	square.h = h * 2;
+	square.h = h / 1.2;
 	SDL_RenderCopyEx(renderer, leftwall->getTexture(), nullptr, &square, 0.0, nullptr, SDL_FLIP_NONE);
 
 	screenCoords = projectionMatrix * rightwall->getPos();
@@ -255,8 +275,16 @@ void Scene1::Render() {
 	square.y = static_cast<int>(screenCoords.y);
 	square.w = w / 3;
 	square.h = h / 1.5;
-
 	SDL_RenderCopyEx(renderer, rightwall->getTexture(), nullptr, &square, 0.0, nullptr, SDL_FLIP_NONE);
+
+	//Draw the ceiling and modify its size
+	screenCoords = projectionMatrix * ceiling->getPos();
+	SDL_QueryTexture(ceiling->getTexture(), nullptr, nullptr, &w, &h);
+	square.x = static_cast<int>(screenCoords.x);
+	square.y = static_cast<int>(screenCoords.y);
+	square.w = w * 2.2;
+	square.h = h / 3;
+	SDL_RenderCopyEx(renderer, ceiling->getTexture(), nullptr, &square, 0.0, nullptr, SDL_FLIP_NONE);
 
 	//Draw the door and modify its size
 	screenCoords = projectionMatrix * progressionDoor->getPos();
@@ -265,8 +293,15 @@ void Scene1::Render() {
 	square.y = static_cast<int>(screenCoords.y);
 	square.w = w;
 	square.h = h;
-
 	SDL_RenderCopyEx(renderer, progressionDoor->getTexture(), nullptr, &square, 0.0, nullptr, SDL_FLIP_NONE);
+
+	screenCoords = projectionMatrix * hidingspy->getPos();
+	SDL_QueryTexture(hidingspy->getTexture(), nullptr, nullptr, &w, &h);
+	square.x = static_cast<int>(screenCoords.x);
+	square.y = static_cast<int>(screenCoords.y);
+	square.w = w / 3.6;
+	square.h = h / 3;
+	SDL_RenderCopyEx(renderer, hidingspy->getTexture(), nullptr, &square, 0.0, nullptr, SDL_FLIP_NONE);
 
 	//Draw the player in its given position and modify its size
 	screenCoords = projectionMatrix * player->getPos();

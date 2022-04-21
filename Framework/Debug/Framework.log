@@ -1,2 +1,77 @@
-﻿  GameManager.cpp
+﻿  Body.cpp
+  CollisionManager.cpp
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\CollisionManager.cpp(42,28): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\CollisionManager.cpp(42,21): warning C4244: 'initializing': conversion from 'T' to 'const int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\CollisionManager.cpp(43,28): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\CollisionManager.cpp(43,21): warning C4244: 'initializing': conversion from 'T' to 'const int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\CollisionManager.cpp(53,72): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\CollisionManager.cpp(53,24): warning C4244: 'initializing': conversion from 'float' to 'const int', possible loss of data
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\CollisionManager.cpp(310,19): warning C4244: 'return': conversion from '_Ty' to 'int', possible loss of data
+          with
+          [
+              _Ty=float
+          ]
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\CollisionManager.cpp(317,35): warning C4244: 'initializing': conversion from 'const _Ty' to 'int', possible loss of data
+          with
+          [
+              _Ty=float
+          ]
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\CollisionManager.cpp(317,25): warning C4244: 'initializing': conversion from 'const _Ty' to 'const int', possible loss of data
+          with
+          [
+              _Ty=float
+          ]
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\CollisionManager.cpp(320,19): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\CollisionManager.cpp(322,20): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\CollisionManager.cpp(363,38): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\CollisionManager.cpp(363,23): warning C4244: 'initializing': conversion from 'double' to 'const float', possible loss of data
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\CollisionManager.cpp(364,38): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\CollisionManager.cpp(364,23): warning C4244: 'initializing': conversion from 'double' to 'const float', possible loss of data
+  Debug.cpp
+  EndScene.cpp
+  GameManager.cpp
+  GameObject.cpp
+  Main.cpp
+  MMath.cpp
+  Player.cpp
+  Scene0.cpp
+  Scene1.cpp
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\Scene1.cpp(260,15): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\Scene1.cpp(269,15): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\Scene1.cpp(277,15): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\Scene1.cpp(285,15): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\Scene1.cpp(302,15): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  Scene2.cpp
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\Scene2.cpp(269,15): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\Scene2.cpp(278,15): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\Scene2.cpp(286,15): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\Scene2.cpp(294,15): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\Scene2.cpp(311,15): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\Scene2.cpp(312,15): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  Scene3.cpp
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\Scene3.cpp(253,15): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\Scene3.cpp(262,15): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\Scene3.cpp(270,15): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Framework\Scene3.cpp(278,15): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  StartScene.cpp
+  Timer.cpp
+  VMath.cpp
+  Window.cpp
+  Generating Code...
   Framework.vcxproj -> C:\Users\david\Desktop\Humber College\4. Semester 4\Game Midstone\Assignments\MIDSTONE2022W\Debug\Framework.exe
