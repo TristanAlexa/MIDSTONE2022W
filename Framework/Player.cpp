@@ -19,7 +19,7 @@ Player::Player()
 
 	gravity = -GRAVITY;
 
-	is_moving = false;
+	//is_moving = false;
 	is_grounded = false;
 	is_dead = false;
 
